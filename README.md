@@ -1,2 +1,5 @@
 # juruletih.github.io
-Laman induk bahan Matematik KSSM Cg Din
+
+Laman murid: latihan eTIMSS, latih tubi buku teks dan ulang kaji kendiri Matematik KSSM Tingkatan 1–3.
+
+Bahan untuk guru berada dalam repositori berasingan: https://juruletih.github.io/juruletihs/
