@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heuristik Lukis Rajah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 64px}
+.back{display:inline-block;font-size:15px;font-weight:600;color:var(--navy);text-decoration:none;margin-bottom:20px}
+.back:hover{text-decoration:underline}
+header{background:var(--panel);border-radius:20px;padding:28px 24px;margin-bottom:28px}
+header small{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header h1{margin:6px 0 0;font-size:clamp(26px,5.5vw,38px);line-height:1.15;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+h2{font-size:24px;line-height:1.25;color:var(--navy);margin:40px 0 12px}
+h3{font-size:19px;line-height:1.3;margin:28px 0 8px}
+h4{font-size:17px;margin:20px 0 6px}
+p,li{max-width:70ch}
+a{color:var(--navy)}
+img{display:block;max-width:100%;height:auto;margin:12px 0;border-radius:12px;border:1px solid var(--line);background:#fff}
+pre{white-space:pre-wrap;background:var(--panel);border-radius:12px;padding:12px 14px;font:15px/1.5 ui-monospace,Menlo,Consolas,monospace}
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:700}
+@media (prefers-color-scheme:dark){th{color:#121722}}
+tr:last-child td{border-bottom:0}
+tr:nth-child(even) td{background:var(--panel)}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{.back{display:none}header{background:none;padding:0}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../">← Kembali ke senarai bahan</a>
+<header><small>Modul murid · Tingkatan 1</small><h1>Heuristik Lukis Rajah</h1></header>
+<main>
+<p>Modul ini membantu kamu belajar melukis rajah untuk memahami dan menyelesaikan masalah Matematik. Cetak pada kertas A4 dan sediakan kertas grid.</p>
+<div class="tw"><table><tr><th>Nama</th><th>Kelas</th><th>Tarikh</th></tr><tr><td></td><td></td><td></td></tr></table></div>
+<h2>Nota 1: Apa itu heuristik?</h2>
+<p><strong>Heuristik ialah petua yang membantu kita mencari jalan apabila kita tidak tahu hendak mula. Ia bukan jawapan siap.</strong></p>
+<p>Bayangkan kamu masak tanpa resipi. Seorang tukang masak berkata, &quot;Rasa dahulu, tambah garam sedikit demi sedikit.&quot; Itu petua, bukan arahan tepat. Heuristik dalam Matematik sama: ia membantu, tetapi kamu masih perlu berfikir, menyemak dan mencuba cara lain jika perlu.</p>
+<p><strong>Heuristik kita hari ini: Lukis Rajah.</strong></p>
+<h3>Bila rajah benar-benar membantu?</h3>
+<div class="tw"><table><tr><th>Rajah yang membantu</th><th>Rajah yang tidak membantu</th></tr><tr><td>Dilukis <strong>sebelum</strong> mengira</td><td>Dilukis selepas dapat jawapan</td></tr><tr><td>Ada label untuk yang diketahui dan tanda <strong>?</strong> untuk yang dicari</td><td>Tiada label</td></tr><tr><td>Kamu <strong>menunjuk</strong> pada rajah apabila menerangkan</td><td>Hanya untuk hiasan</td></tr><tr><td>Dibaiki apabila tidak sepadan dengan soalan</td><td>Dibiarkan walaupun salah</td></tr></table></div>
+<h3>Kad LUKIS: lima langkah</h3>
+<div class="tw"><table><tr><th>Huruf</th><th>Buat apa</th><th>Tanya diri sendiri</th></tr><tr><td><strong>L</strong></td><td><strong>L</strong>ayari soalan: baca dua kali</td><td>&quot;Boleh saya terangkan soalan ini dengan ayat sendiri?&quot;</td></tr><tr><td><strong>U</strong></td><td><strong>U</strong>nsur diketahui: labelkan pada rajah</td><td>&quot;Apa yang soalan beritahu saya?&quot;</td></tr><tr><td><strong>K</strong></td><td><strong>K</strong>enal pasti yang dicari: tulis <strong>?</strong></td><td>&quot;Apa yang saya perlu cari?&quot;</td></tr><tr><td><strong>I</strong></td><td><strong>I</strong>lustrasi: pilih jenis rajah dan lukis</td><td>&quot;Rajah jenis apa paling sesuai?&quot;</td></tr><tr><td><strong>S</strong></td><td><strong>S</strong>emak: adakah rajah sepadan dengan soalan? Adakah jawapan munasabah?</td><td>&quot;Bagaimana rajah menunjukkan jawapan saya betul?&quot;</td></tr></table></div>
+<h3>Ingat</h3>
+<ul>
+<li>Rajah yang salah pun memberi petunjuk. Baiki dan cuba lagi.</li>
+<li>Jika rajah pertama tidak membantu, <strong>tukar</strong> kepada jenis rajah lain.</li>
+<li>Tidak semua masalah perlukan rajah. Pilih apabila ia membantu.</li>
+</ul>
+<h2>Nota 2: Empat jenis rajah</h2>
+<p><strong>Pilih rajah mengikut jenis masalah.</strong></p>
+<div class="tw"><table><tr><th>Jenis rajah</th><th>Pilih apabila masalah tentang...</th></tr><tr><td>Model bar</td><td>Pecahan, nisbah, perubahan kuantiti, &quot;daripada baki&quot;</td></tr><tr><td>Garis nombor</td><td>Nombor negatif, naik dan turun, tertib nombor</td></tr><tr><td>Rajah bentuk</td><td>Luas, perimeter, panjang sisi, sudut</td></tr><tr><td>Pokok atau jadual</td><td>Faktor, senarai kemungkinan, mengelas maklumat</td></tr></table></div>
+<h3>Contoh 1: Model bar</h3>
+<p><em>Raju membeli sebuah buku berharga RM18. Ini ialah ⅗ daripada wangnya. Berapakah wang Raju?</em></p>
+<pre>Wang Raju:    [ u | u | u | u | u ]   ← semua = ?<br>Buku (3/5):   [ u | u | u ]           = RM18</pre>
+<p>3 unit = RM18, maka 1 unit = RM6. Wang Raju = 5 unit = 5 × 6 = <strong>RM30</strong>. Semak: ⅗ × 30 = 18 ✓.</p>
+<h3>Contoh 2: Garis nombor</h3>
+<p><em>Mulai −2, naik 5, kemudian turun 6. Di mana kita berhenti?</em></p>
+<pre>Naik 5:<br> -4 -3 -2 -1  0  1  2  3  4<br>        ^              ^<br>      mula  ---- +5 ---&gt; 3<br><br>Turun 6:<br> -4 -3 -2 -1  0  1  2  3  4<br>     ^                 ^<br>    -3  &lt;--- -6 ---   3</pre>
+<p>−2 + 5 = 3; 3 − 6 = <strong>−3</strong>.</p>
+<h3>Contoh 3: Rajah bentuk</h3>
+<p><em>Sebuah segi empat tepat 9 m × 6 m. Sebuah segi empat sama 2 m × 2 m dibuang di satu penjuru. Berapakah luas baki?</em></p>
+<pre>Segi empat tepat 9 × 6        Dibuang: 2 × 2<br>+---------------------+       +-----+<br>|                     |       |     |<br>|                     |       +-----+<br>+---------------------+</pre>
+<p>Luas asal = 9 × 6 = 54 m². Luas dibuang = 2 × 2 = 4 m². Luas baki = 54 − 4 = <strong>50 m²</strong>.</p>
+<h3>Contoh 4: Pokok faktor</h3>
+<p><em>Tulis 36 sebagai hasil darab faktor perdana.</em></p>
+<pre>        36<br>       /  \<br>      4    9<br>     / \  / \<br>    2   2 3   3</pre>
+<p>Sambung memecah sehingga semua nombor ialah nombor perdana. 36 = 2 × 2 × 3 × 3. Faktor perdana: <strong>2 dan 3</strong>.</p>
+<h2>Pelajaran 1: Masalah pembuka dan latihan berpandu</h2>
+<h3>Masalah pembuka: Siput dalam perigi</h3>
+<p><em>Seekor siput memanjat dinding perigi sedalam 10 m. Pada waktu siang ia naik 3 m. Pada waktu malam ia gelincir 2 m. Pada hari ke berapa siput sampai ke atas?</em></p>
+<p><strong>Langkah 1.</strong> Tulis jawapan kamu dalam 1 minit, tanpa melukis.</p>
+<p><strong>Langkah 2.</strong> Lukis garis tegak dari 0 m hingga 10 m. Jejaki siput hari demi hari.</p>
+<div class="tw"><table><tr><th>Jawapan pantas saya</th><th>Rajah saya</th><th>Jawapan selepas melukis</th></tr><tr><td></td><td></td><td></td></tr></table></div>
+<p>Adakah jawapan saya berubah? Mengapa?</p>
+<h3>Aktiviti 1</h3>
+<p><em>Ali ada RM60. Dia guna ⅓ untuk membeli buku dan ¼ daripada </em><em><strong>baki</strong></em><em> untuk makanan. Berapakah baki akhir?</em></p>
+<div class="tw"><table><tr><th>Rajah saya (model bar)</th><th>Kerja dan jawapan saya</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>Aktiviti 2</h3>
+<p><em>Pukul 6 pagi suhu ialah −3°C. Pada tengah hari suhu naik 8°C. Pada waktu malam suhu turun 5°C. Apakah suhu pada waktu malam?</em></p>
+<div class="tw"><table><tr><th>Rajah saya (garis nombor)</th><th>Kerja dan jawapan saya</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>Aktiviti 3</h3>
+<p><em>Sebidang tanah berbentuk segi empat tepat 20 m × 12 m. Sebuah laluan selebar 2 m dibina di </em><em><strong>dalam</strong></em><em> tanah itu, mengelilingi tepinya. Berapakah luas laluan itu?</em></p>
+<div class="tw"><table><tr><th>Rajah saya (rajah bentuk)</th><th>Kerja dan jawapan saya</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>Semak diri (untuk setiap aktiviti)</h3>
+<ul>
+<li>☐ Saya melukis <strong>sebelum</strong> mengira.</li>
+<li>☐ Saya melabel yang diketahui dan menandakan <strong>?</strong></li>
+<li>☐ Saya menunjuk pada rajah apabila menerangkan kepada rakan.</li>
+<li>☐ Saya menyemak jawapan dengan rajah.</li>
+</ul>
+<h2>Pelajaran 2: Memilih rajah yang sesuai</h2>
+<h3>Kad pengelasan</h3>
+<p>Padankan setiap masalah dengan jenis rajah. <strong>Jangan selesaikan masalah.</strong> Hanya pilih rajah dan beri sebab.</p>
+<div class="tw"><table><tr><th>Kad</th><th>Masalah</th><th>Jenis rajah (model bar, garis nombor, rajah bentuk atau pokok)</th><th>Sebab</th></tr><tr><td>a</td><td>Suhu −4°C naik 9°C</td><td></td><td></td></tr><tr><td>b</td><td>Nisbah 2 : 3 dan jumlah 40</td><td></td><td></td></tr><tr><td>c</td><td>Luas laluan yang mengelilingi sebuah kolam</td><td></td><td></td></tr><tr><td>d</td><td>Faktor perdana bagi 60</td><td></td><td></td></tr><tr><td>e</td><td>Tangki ⅜ penuh; tambah 20 liter menjadi ⅝ penuh</td><td></td><td></td></tr><tr><td>f</td><td>Tangga 13 m disandarkan pada dinding; kaki tangga 5 m dari dinding</td><td></td><td></td></tr></table></div>
+<p>Adakah ada kad yang boleh menggunakan lebih daripada satu jenis rajah? Yang mana?</p>
+<h3>Aktiviti 4</h3>
+<p><em>Nisbah murid lelaki kepada murid perempuan dalam sebuah kelas ialah 3 : 5. Murid perempuan lebih 12 orang daripada murid lelaki. Berapakah jumlah murid dalam kelas itu?</em></p>
+<div class="tw"><table><tr><th>Rajah saya (model bar)</th><th>Kerja dan jawapan saya</th></tr><tr><td></td><td></td></tr></table></div>
+<p><strong>Soalan renungan.</strong> 12 mewakili bahagian mana pada bar kamu?</p>
+<h3>Aktiviti 5: Bila rajah pertama tidak membantu</h3>
+<p><em>Sebuah kolam segi empat tepat 15 m × 9 m dikelilingi oleh laluan selebar 1 m di </em><em><strong>luar</strong></em><em> kolam. Berapakah luas laluan itu?</em></p>
+<p><strong>Langkah 1.</strong> Cuba lukis model bar dahulu. Adakah ia membantu?</p>
+<p><strong>Langkah 2.</strong> Jika tidak, <strong>tukar</strong> kepada rajah bentuk dan selesaikan.</p>
+<p><strong>Langkah 3.</strong> Kira dengan cara kedua dan bandingkan jawapan.</p>
+<div class="tw"><table><tr><th>Percubaan 1 (model bar)</th><th>Adakah ia membantu? Mengapa?</th><th>Rajah baharu dan jawapan saya</th><th>Cara kedua</th></tr><tr><td></td><td></td><td></td><td></td></tr></table></div>
+<p><strong>Soalan renungan.</strong> Bagaimana kamu tahu bila hendak menukar rajah?</p>
+<h2>Pelajaran 3: Masalah kumpulan</h2>
+<p><strong>Bekerja dalam kumpulan 3 orang di papan putih menegak. Semua kumpulan mulakan dengan K1. Cuba K2 dan K3 sebagai cabaran.</strong> Guna langkah LUKIS. Guru tidak akan memberi langkah penyelesaian; guru hanya akan bertanya soalan.</p>
+<h3>K1: Tangki air</h3>
+<p><em>Sebuah tangki air ⅖ penuh. Selepas 18 liter air ditambah, tangki itu menjadi 7/10 penuh. Berapakah muatan penuh tangki itu?</em></p>
+<div class="tw"><table><tr><th>Rajah kumpulan kami</th><th>Jawapan dan semakan</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>K2: Luas segi tiga</h3>
+<p><em>ABCD ialah segi empat sama bersisi 10 cm. M ialah titik tengah AB dan N ialah titik tengah BC. Cari luas segi tiga DMN.</em></p>
+<pre>A ------ M ------ B<br>|                 |<br>|                 N<br>|                 |<br>D --------------- C</pre>
+<p>Ingat: rajah di atas hanya panduan. Lukis rajah kamu sendiri dan labelkan semua panjang.</p>
+<div class="tw"><table><tr><th>Rajah kumpulan kami</th><th>Jawapan dan semakan</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>K3: Tangga yang gelincir</h3>
+<p><em>Sebatang tangga 5 m disandarkan pada dinding. Kaki tangga berada 3 m dari dinding. Bahagian atas tangga gelincir turun 1 m. Berapa jauh kaki tangga bergerak ke luar?</em></p>
+<p>Pilih sendiri jenis rajah dan terangkan sebab pilihan kamu kepada kumpulan.</p>
+<div class="tw"><table><tr><th>Rajah kumpulan kami</th><th>Jawapan dan semakan</th></tr><tr><td></td><td></td></tr></table></div>
+<h3>Bandingkan</h3>
+<p>Selepas guru menampal penyelesaian di papan tulis, jawab:</p>
+<ol>
+<li>Apa yang sama pada penyelesaian kumpulan lain dan kumpulan kita?</li>
+<li>Apa yang berbeza?</li>
+<li>Cara mana yang lebih mudah disemak? Mengapa?</li>
+</ol>
+<h2>Exit ticket, refleksi dan cabaran</h2>
+<h3>Exit ticket (jawab seorang diri)</h3>
+<div class="tw"><table><tr><th>Pelajaran</th><th>Soalan</th><th>Jawapan saya</th></tr><tr><td>1</td><td>Zul ada RM48. Dia guna ¼ untuk tiket dan ⅓ daripada <strong>baki</strong> untuk makanan. Lukis model bar dan cari baki akhir. Lengkapkan: &quot;Rajah membantu saya kerana ...&quot;</td><td></td></tr><tr><td>2</td><td>Pilih jenis rajah dan beri sebab: Suhu pagi −6°C, naik 10°C, kemudian turun 7°C. Apakah suhu akhir?</td><td></td></tr><tr><td>3</td><td>Seorang kawan melukis rajah selepas mendapat jawapan. Apakah nasihat kamu kepadanya?</td><td></td></tr></table></div>
+<h3>Refleksi</h3>
+<div class="tw"><table><tr><th>Soalan</th><th>Jawapan saya</th></tr><tr><td>Heuristik apa yang kita guna dalam modul ini?</td><td></td></tr><tr><td>Bila rajah paling membantu saya? Bila ia tidak membantu?</td><td></td></tr><tr><td>Apa yang saya akan cuba dahulu lain kali apabila buntu?</td><td></td></tr><tr><td>Di mana lagi (dalam Matematik, Sains atau kehidupan) saya boleh melukis rajah untuk memahami sesuatu?</td><td></td></tr></table></div>
+<h3>Cabaran (untuk yang mahu mencuba lagi)</h3>
+<ol>
+<li><strong>K2 lanjutan.</strong> Dalam K2, jika MB = NB = 4 cm (bukan titik tengah), berapakah luas segi tiga DMN?</li>
+<li><strong>K3 lanjutan.</strong> Jika bahagian atas tangga turun 2 m (bukan 1 m), berapa jauh kaki tangga bergerak? Adakah jawapannya 2 m? Mengapa?</li>
+<li><strong>Reka masalah.</strong> Reka satu masalah yang memerlukan rajah. Lukis rajah dan tulis jawapan pada kertas berasingan. Tukar masalah kamu dengan rakan.</li>
+</ol>
+<h3>Glosari</h3>
+<div class="tw"><table><tr><th>Istilah</th><th>Maksud</th></tr><tr><td>Heuristik (<em>heuristic</em>)</td><td>Petua untuk mencari jalan penyelesaian; bukan jawapan siap</td></tr><tr><td>Model bar (<em>bar model</em>)</td><td>Gambar rajah jalur untuk menunjukkan nombor dan hubungannya</td></tr><tr><td>Garis nombor (<em>number line</em>)</td><td>Garis dengan nombor tersusun, untuk menunjukkan kedudukan dan perubahan</td></tr><tr><td>Unit (<em>unit</em>)</td><td>Satu bahagian sama besar dalam model bar</td></tr><tr><td>Baki (<em>remainder</em>)</td><td>Jumlah yang tinggal selepas sebahagian digunakan</td></tr></table></div>
+</main>
+<footer>Disediakan oleh Cg Din (Wan Mohd Aizuddin bin Che Mat), SMK Sultan Ismail, Kota Bharu · Boleh dicetak terus dari pelayar (Ctrl/Cmd + P).</footer>
+</div>
+</body>
+</html>

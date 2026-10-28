@@ -2,96 +2,48 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matematik KSSM untuk Murid — Cg Din</title>
-<meta name="description" content="Himpunan bahan Matematik KSSM percuma: latih tubi buku teks dan ulang kaji kendiri Tingkatan 1–3.">
-<meta property="og:title" content="Matematik KSSM untuk Murid — Cg Din">
-<meta property="og:description" content="Latih tubi buku teks dan ulang kaji kendiri Matematik Tingkatan 1–3. Percuma, terus buka di telefon.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matematik KSSM untuk Murid · Cg Din</title>
+<meta name="description" content="Latihan, alat interaktif dan ulang kaji percuma untuk murid Tingkatan 1 hingga 3. Boleh dibuka terus di telefon atau komputer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
 <style>
-  :root{
-    --bg:#f4f6fa; --card:#ffffff; --ink:#172033; --muted:#5a6478; --line:#dde2ea;
-    --accent:#2252d6; --c1:#2252d6; --c2:#168a52; --c3:#b4530f;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#10141c; --card:#1a202b; --ink:#e8ecf3; --muted:#9aa6b8; --line:#2c3545;
-      --accent:#7ba0ff; --c1:#7ba0ff; --c2:#4fc98b; --c3:#f0a35e; }
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-  .wrap{max-width:880px;margin:0 auto;padding:28px 16px 48px}
-  header h1{margin:0;font-size:clamp(24px,5vw,34px);line-height:1.15;letter-spacing:-.01em}
-  header p{margin:8px 0 0;color:var(--muted);max-width:60ch}
-  h2{margin:32px 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-  a.card{display:flex;flex-direction:column;gap:6px;padding:16px;background:var(--card);border:1px solid var(--line);
-    border-left:4px solid var(--tone);border-radius:10px;color:inherit;text-decoration:none}
-  a.card:hover{border-color:var(--tone)}
-  a.card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-  .card b{font-size:17px}
-  .card span{font-size:14px;color:var(--muted)}
-  .card em{font-style:normal;font-size:13px;font-weight:600;color:var(--tone);margin-top:auto}
-  .t1{--tone:var(--c1)} .t2{--tone:var(--c2)} .t3{--tone:var(--c3)} .t4{--tone:var(--muted)}
-  footer{margin-top:40px;font-size:13px;color:var(--muted)}
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:20px 16px 56px}
+.hero{position:relative;overflow:hidden;background:var(--panel);border-radius:24px;padding:32px 24px 28px}
+.hero small{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero h1{margin:6px 0 0;font-size:clamp(28px,6vw,44px);line-height:1.1;font-weight:800;color:var(--navy);letter-spacing:-.015em;max-width:16ch}
+.hero p{margin:12px 0 0;color:var(--ink);max-width:56ch}
+.hero .dot{position:absolute;border-radius:999px;opacity:.9}
+.d1{width:96px;height:96px;background:var(--sky);right:-24px;top:-24px}
+.d2{width:40px;height:40px;background:var(--peach);right:72px;top:40px}
+.d3{width:22px;height:22px;background:var(--sage);right:40px;top:96px}
+@media (max-width:520px){.hero .dot{opacity:.35}}
+.switch{display:inline-block;margin-top:16px;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--navy);font-weight:700;font-size:15px;text-decoration:none}
+.switch:hover{border-color:var(--navy)}
+h2{margin:36px 0 12px;font-size:20px;color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:6px;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:140px}
+a.card:hover{border-color:var(--navy)}
+a.card:focus-visible,.switch:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.card .tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 10px;border-radius:999px;background:var(--panel);color:var(--navy)}
+.card b{font-size:18px;line-height:1.3}
+.card span{font-size:15px;color:var(--muted)}
+.card em{font-style:normal;font-size:14px;font-weight:700;color:var(--navy);margin-top:auto}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{color:var(--navy)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>Matematik KSSM untuk Murid</h1>
-    <p>Latihan dan ulang kaji percuma untuk murid Tingkatan 1–3, disediakan oleh Cg Din, SMK Sultan Ismail, Kota Bharu. Boleh dibuka terus di telefon atau komputer.</p>
-  </header>
-
-  <h2>Persediaan TIMSS</h2>
-  <div class="grid">
-    <a class="card t1" href="https://juruletih.github.io/timss/">
-      <b>🖥️ Latihan eTIMSS</b>
-      <span>Simulasi menjawab di komputer: log masuk, 13 soalan Matematik dan Sains, kalkulator dan pembaris atas skrin.</span>
-      <em>Mula latihan →</em>
-    </a>
-  </div>
-
-
-  <h2>Latih tubi buku teks</h2>
-  <div class="grid">
-    <a class="card t2" href="https://juruletih.github.io/btmatt1/">
-      <b>✏️ Latih Tubi Tingkatan 1</b>
-      <span>Latihan dan jalan kerja buku teks, ikut bab.</span>
-      <em>Buka →</em>
-    </a>
-    <a class="card t2" href="https://juruletih.github.io/btmatt2/">
-      <b>✏️ Latih Tubi Tingkatan 2</b>
-      <span>Latihan dan jalan kerja buku teks, ikut bab.</span>
-      <em>Buka →</em>
-    </a>
-    <a class="card t2" href="https://juruletih.github.io/btmatt3/">
-      <b>✏️ Latih Tubi Tingkatan 3</b>
-      <span>Latihan dan jalan kerja buku teks, ikut bab.</span>
-      <em>Buka →</em>
-    </a>
-  </div>
-
-  <h2>Ulang kaji kendiri</h2>
-  <div class="grid">
-    <a class="card t3" href="https://juruletih.github.io/ukmatt1/">
-      <b>📖 Ulang Kaji Tingkatan 1</b>
-      <span>Peta modul untuk murid ulang kaji sendiri.</span>
-      <em>Buka →</em>
-    </a>
-    <a class="card t3" href="https://juruletih.github.io/ukmatt2/">
-      <b>📖 Ulang Kaji Tingkatan 2</b>
-      <span>Peta modul untuk murid ulang kaji sendiri.</span>
-      <em>Buka →</em>
-    </a>
-    <a class="card t3" href="https://juruletih.github.io/ukmatt3/">
-      <b>📖 Ulang Kaji Tingkatan 3</b>
-      <span>Peta modul untuk murid ulang kaji sendiri.</span>
-      <em>Buka →</em>
-    </a>
-  </div>
-
-
-
-  <footer>Kemas kini: Oktober 2026 · Wan Mohd Aizuddin bin Che Mat (Cg Din)</footer>
+<header class="hero"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i>
+<small>Untuk murid</small><h1>Matematik KSSM untuk Murid</h1><p>Latihan, alat interaktif dan ulang kaji percuma untuk murid Tingkatan 1 hingga 3. Boleh dibuka terus di telefon atau komputer.</p><a class="switch" href="https://juruletih.github.io/guru/">Guru? Ke laman guru →</a></header>
+<h2>Persediaan TIMSS</h2><div class="grid"><a class="card" href="https://juruletih.github.io/timss/"><span class="tag">TIMSS</span><b>Latihan eTIMSS</b><span>Simulasi menjawab di komputer: log masuk, 13 soalan Matematik dan Sains, kalkulator dan pembaris atas skrin.</span><em>Mula latihan →</em></a></div><h2>Alat interaktif</h2><div class="grid"><a class="card" href="https://juruletih.github.io/alat-interaktif-matematik-t1/"><span class="tag">Tingkatan 1</span><b>Alat Interaktif Matematik</b><span>Model bar, nisbah setara, sudut, garis selari, kompas, statistik dan banyak lagi.</span><em>Buka →</em></a><a class="card" href="bahan/misi-penganalisis-data/"><span class="tag">Tingkatan 1</span><b>Misi Penganalisis Data</b><span>Kumpul, susun dan wakilkan data sambil menyelesaikan misi.</span><em>Buka →</em></a><a class="card" href="bahan/makmal-tekan-bongkah/"><span class="tag">Tingkatan 3</span><b>Makmal Tekan Bongkah</b><span>Pusing bongkah 3D dan lihat pelan, dongakan depan dan dongakan sisi.</span><em>Buka →</em></a></div><h2>Kalkulator dan strategi</h2><div class="grid"><a class="card" href="bahan/panduan-casio/"><span class="tag">Kalkulator</span><b>Panduan Lengkap Casio fx-570MY CW</b><span>Fungsi utama kalkulator saintifik baharu, langkah demi langkah.</span><em>Buka →</em></a><a class="card" href="bahan/lukis-rajah/"><span class="tag">Tingkatan 1</span><b>Heuristik Lukis Rajah</b><span>Lukis rajah dahulu sebelum mengira: contoh dan latihan berpandu.</span><em>Buka →</em></a></div><h2>Latih tubi buku teks</h2><div class="grid"><a class="card" href="https://juruletih.github.io/btmatt1/"><span class="tag">Tingkatan 1</span><b>Latih Tubi Tingkatan 1</b><span>Latihan dan jalan kerja buku teks, ikut bab.</span><em>Buka →</em></a><a class="card" href="https://juruletih.github.io/btmatt2/"><span class="tag">Tingkatan 2</span><b>Latih Tubi Tingkatan 2</b><span>Latihan dan jalan kerja buku teks, ikut bab.</span><em>Buka →</em></a><a class="card" href="https://juruletih.github.io/btmatt3/"><span class="tag">Tingkatan 3</span><b>Latih Tubi Tingkatan 3</b><span>Latihan dan jalan kerja buku teks, ikut bab.</span><em>Buka →</em></a></div><h2>Ulang kaji kendiri</h2><div class="grid"><a class="card" href="https://juruletih.github.io/ukmatt1/"><span class="tag">Tingkatan 1</span><b>Ulang Kaji Tingkatan 1</b><span>Peta modul untuk murid ulang kaji sendiri.</span><em>Buka →</em></a><a class="card" href="https://juruletih.github.io/ukmatt2/"><span class="tag">Tingkatan 2</span><b>Ulang Kaji Tingkatan 2</b><span>Peta modul untuk murid ulang kaji sendiri.</span><em>Buka →</em></a><a class="card" href="https://juruletih.github.io/ukmatt3/"><span class="tag">Tingkatan 3</span><b>Ulang Kaji Tingkatan 3</b><span>Peta modul untuk murid ulang kaji sendiri.</span><em>Buka →</em></a></div>
+<footer>Kemas kini: Oktober 2026 · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu</footer>
 </div>
 </body>
 </html>

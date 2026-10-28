@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misi Penganalisis Data — Matematik T1 Bab 12</title>
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --ink:#1d2433; --muted:#5b6475; --line:#d9deea;
+  --pri:#2f5bea; --pri-ink:#ffffff; --ok:#1e8e4e; --ok-bg:#e6f6ec; --bad:#c0392b; --bad-bg:#fdecea;
+  --warn-bg:#fff6dc; --note-bg:#eef3ff; --chip:#e9edf7;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.5}
+#app{max-width:720px;margin:0 auto;padding:12px 14px 40px}
+.top{display:flex;align-items:center;gap:8px;margin-bottom:10px;min-height:40px}
+.top .sp{flex:1}
+.btn{display:inline-block;border:0;border-radius:12px;padding:12px 18px;font-size:17px;font-weight:600;cursor:pointer;background:var(--pri);color:var(--pri-ink);text-align:center}
+.btn.block{display:block;width:100%;margin-top:12px}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+.btn.small{padding:8px 12px;font-size:15px}
+.btn.danger{background:var(--bad);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.card{background:var(--card);border-radius:16px;padding:16px;margin:10px 0;box-shadow:0 1px 3px rgba(20,30,60,.08)}
+h1{font-size:24px;margin:6px 0 4px}
+h2{font-size:20px;margin:4px 0 8px}
+h3{font-size:17px;margin:14px 0 6px}
+.muted{color:var(--muted);font-size:15px}
+.chip{display:inline-block;background:var(--chip);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600;margin-right:4px}
+.lvl-Rendah{background:#e3f2fd}.lvl-Sederhana{background:#e8f5e9}.lvl-Tinggi{background:#fff3e0}.lvl-KBAT{background:#f3e5f5}
+.ver{display:inline-block;background:#fff1a8;border:1px solid #e6cf4f;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;margin-top:10px}
+.databox{background:var(--note-bg);border-radius:10px;padding:10px 12px;margin:8px 0;word-wrap:break-word}
+.note{background:var(--note-bg);border-left:4px solid var(--pri);border-radius:8px;padding:10px 12px;margin:8px 0}
+.warn{background:var(--warn-bg);border-radius:10px;padding:10px 12px;margin:8px 0}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:16px;cursor:pointer;color:var(--ink)}
+.opt.sel{border-color:var(--pri);background:#eef2ff}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.fb{border-radius:12px;padding:12px 14px;margin:10px 0}
+.fb.ok{background:var(--ok-bg);border:1px solid #b9e3c8}
+.fb.bad{background:var(--bad-bg);border:1px solid #f3c1bb}
+.fb.hint{background:var(--warn-bg);border:1px solid #f0dc94}
+input[type=text]{width:100%;font-size:18px;padding:12px;border:2px solid var(--line);border-radius:12px;margin:6px 0}
+input[type=text]:focus{outline:none;border-color:var(--pri)}
+.bar{height:10px;background:var(--chip);border-radius:999px;overflow:hidden;margin:6px 0}
+.bar > div{height:100%;background:var(--pri)}
+table.t{border-collapse:collapse;width:100%;margin:8px 0;background:#fff;font-size:16px}
+table.t th,table.t td{border:1px solid var(--line);padding:6px 8px;text-align:center;vertical-align:middle}
+table.t th{background:var(--chip)}
+.tally{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center}
+.tally svg{display:block;width:36px;height:26px;flex:0 0 36px}
+.chart{display:block;width:100%;max-width:520px;margin:8px auto;background:#fff;border-radius:10px}
+.mods{display:grid;grid-template-columns:1fr;gap:10px}
+.mod{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;color:var(--ink);font-size:16px}
+.mod .t1{font-weight:700}
+.mod.done{border-color:var(--ok)}
+.big{font-size:28px;font-weight:800}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:var(--note-bg);border-radius:12px;padding:10px;text-align:center}
+.log{max-height:none}
+.log .row{border-bottom:1px solid var(--line);padding:8px 0;font-size:15px}
+.ok-t{color:var(--ok);font-weight:700}.bad-t{color:var(--bad);font-weight:700}
+.stem{font-family:ui-monospace,Menlo,Consolas,monospace}
+ol,ul{padding-left:22px;margin:6px 0}
+li{margin:3px 0}
+@media (min-width:600px){.mods{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+"use strict";
+var VERSION = "Bab12-v1";
+var KEY = "misi_bab12_t1_hub";
+
+/* ================= PEMBANTU VISUAL (self-contained) ================= */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function tally(n){
+  var out = '<div class="tally" aria-label="gundalan '+n+'">';
+  var full = Math.floor(n/5), rem = n%5, i, k;
+  for(i=0;i<full;i++){
+    out += '<svg viewBox="0 0 36 26">';
+    for(k=0;k<4;k++){ out += '<line x1="'+(6+k*7)+'" y1="3" x2="'+(6+k*7)+'" y2="23" stroke="#1d2433" stroke-width="2"/>'; }
+    out += '<line x1="2" y1="20" x2="34" y2="6" stroke="#c0392b" stroke-width="2"/></svg>';
+  }
+  if(rem>0){
+    out += '<svg viewBox="0 0 36 26">';
+    for(k=0;k<rem;k++){ out += '<line x1="'+(6+k*7)+'" y1="3" x2="'+(6+k*7)+'" y2="23" stroke="#1d2433" stroke-width="2"/>'; }
+    out += '</svg>';
+  }
+  return out + '</div>';
+}
+
+function table(head, rows){
+  var h = '<table class="t"><tr>' + head.map(function(x){return '<th>'+x+'</th>';}).join('') + '</tr>';
+  rows.forEach(function(r){ h += '<tr>' + r.map(function(x){return '<td>'+x+'</td>';}).join('') + '</tr>'; });
+  return h + '</table>';
+}
+
+function barChart(labels, values, opt){
+  opt = opt || {};
+  var W=360,H=230,L=40,B=40,T=24,R=10;
+  var max = opt.max || Math.max.apply(null, values);
+  var step = opt.step || Math.max(1, Math.ceil(max/5));
+  max = Math.ceil(max/step)*step;
+  var pw=W-L-R, ph=H-T-B, n=labels.length, bw=pw/n*0.6;
+  var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img">';
+  if(opt.title) s+='<text x="'+(W/2)+'" y="16" text-anchor="middle" font-size="13" font-weight="700">'+esc(opt.title)+'</text>';
+  for(var v=0; v<=max; v+=step){
+    var y=T+ph-(v/max)*ph;
+    s+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#e3e7f0"/>';
+    s+='<text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11">'+v+'</text>';
+  }
+  for(var i=0;i<n;i++){
+    var x=L+pw/n*i+(pw/n-bw)/2, h=(values[i]/max)*ph;
+    s+='<rect x="'+x+'" y="'+(T+ph-h)+'" width="'+bw+'" height="'+h+'" fill="#2f5bea"/>';
+    s+='<text x="'+(x+bw/2)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11">'+esc(labels[i])+'</text>';
+  }
+  s+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#1d2433"/>';
+  s+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#1d2433"/>';
+  if(opt.ylab) s+='<text x="12" y="'+(T+ph/2)+'" font-size="11" transform="rotate(-90 12 '+(T+ph/2)+')" text-anchor="middle">'+esc(opt.ylab)+'</text>';
+  if(opt.xlab) s+='<text x="'+(L+pw/2)+'" y="'+(H-6)+'" font-size="11" text-anchor="middle">'+esc(opt.xlab)+'</text>';
+  return s+'</svg>';
+}
+
+/* Carta palang dengan paksi tegak bermula pada nilai bukan sifar (untuk 12.1.6) */
+function bar2(labels, values, ymin, ymax, step, title){
+  var W=360,H=220,L=44,B=34,T=24,R=10,pw=W-L-R,ph=H-T-B,n=labels.length,bw=pw/n*0.5;
+  var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img">';
+  s+='<text x="'+(W/2)+'" y="16" text-anchor="middle" font-size="13" font-weight="700">'+esc(title)+'</text>';
+  for(var v=ymin; v<=ymax; v+=step){
+    var y=T+ph-((v-ymin)/(ymax-ymin))*ph;
+    s+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#e3e7f0"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11">'+v+'</text>';
+  }
+  for(var i=0;i<n;i++){
+    var x=L+pw/n*i+(pw/n-bw)/2, h=((values[i]-ymin)/(ymax-ymin))*ph;
+    s+='<rect x="'+x+'" y="'+(T+ph-h)+'" width="'+bw+'" height="'+h+'" fill="'+(i?'#c0392b':'#2f5bea')+'"/>';
+    s+='<text x="'+(x+bw/2)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11">'+esc(labels[i])+'</text>';
+  }
+  s+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#1d2433"/><line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#1d2433"/>';
+  return s+'</svg>';
+}
+
+function pieChart(labels, values, opt){
+  opt = opt || {};
+  var cols=["#2f5bea","#f39c12","#1e8e4e","#c0392b","#8e44ad","#16a085"];
+  var tot=values.reduce(function(a,b){return a+b;},0), cx=110, cy=110, r=90, a0=-Math.PI/2;
+  var s='<svg class="chart" viewBox="0 0 360 230" role="img">';
+  values.forEach(function(v,i){
+    var a1=a0+v/tot*2*Math.PI, large=(a1-a0)>Math.PI?1:0;
+    var x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+    s+='<path d="M'+cx+','+cy+' L'+x0.toFixed(1)+','+y0.toFixed(1)+' A'+r+','+r+' 0 '+large+' 1 '+x1.toFixed(1)+','+y1.toFixed(1)+' Z" fill="'+cols[i%6]+'" stroke="#fff" stroke-width="2"/>';
+    var am=(a0+a1)/2;
+    if(opt.showAngle) s+='<text x="'+(cx+r*0.6*Math.cos(am)).toFixed(1)+'" y="'+(cy+r*0.6*Math.sin(am)+4).toFixed(1)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">'+Math.round(v/tot*360)+'°</text>';
+    a0=a1;
+  });
+  labels.forEach(function(l,i){
+    s+='<rect x="230" y="'+(40+i*24)+'" width="14" height="14" fill="'+cols[i%6]+'"/><text x="250" y="'+(52+i*24)+'" font-size="13">'+esc(l)+'</text>';
+  });
+  return s+'</svg>';
+}
+
+function lineGraph(labels, values, opt){
+  opt = opt || {};
+  var W=360,H=220,L=40,B=36,T=24,R=16,pw=W-L-R,ph=H-T-B,n=labels.length;
+  var max=opt.max||Math.max.apply(null,values), step=opt.step||Math.max(1,Math.ceil(max/5)); max=Math.ceil(max/step)*step;
+  var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img">';
+  if(opt.title) s+='<text x="'+(W/2)+'" y="16" text-anchor="middle" font-size="13" font-weight="700">'+esc(opt.title)+'</text>';
+  for(var v=0; v<=max; v+=step){ var y=T+ph-(v/max)*ph; s+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#e3e7f0"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11">'+v+'</text>'; }
+  var pts=[];
+  for(var i=0;i<n;i++){ var x=L+pw*(i+0.5)/n, y2=T+ph-(values[i]/max)*ph; pts.push(x.toFixed(1)+','+y2.toFixed(1));
+    s+='<text x="'+x+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11">'+esc(labels[i])+'</text>'; }
+  s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#2f5bea" stroke-width="2.5"/>';
+  pts.forEach(function(p){ var q=p.split(','); s+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="#2f5bea"/>'; });
+  s+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#1d2433"/><line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#1d2433"/>';
+  if(opt.xlab) s+='<text x="'+(L+pw/2)+'" y="'+(H-4)+'" font-size="11" text-anchor="middle">'+esc(opt.xlab)+'</text>';
+  return s+'</svg>';
+}
+
+/* counts: objek {nilai: bilangan} untuk nilai lo..hi */
+function dotPlot(lo, hi, counts, xlab){
+  var n=hi-lo+1, W=360, H=200, L=20, R=20, base=160, pw=W-L-R;
+  var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img">';
+  s+='<line x1="'+L+'" y1="'+base+'" x2="'+(W-R)+'" y2="'+base+'" stroke="#1d2433"/>';
+  for(var v=lo; v<=hi; v++){
+    var x=L+pw*((v-lo)+0.5)/n;
+    s+='<line x1="'+x+'" y1="'+base+'" x2="'+x+'" y2="'+(base+5)+'" stroke="#1d2433"/><text x="'+x+'" y="'+(base+20)+'" text-anchor="middle" font-size="12">'+v+'</text>';
+    for(var k=0;k<(counts[v]||0);k++){ s+='<circle cx="'+x+'" cy="'+(base-12-k*18)+'" r="6" fill="#2f5bea"/>'; }
+  }
+  if(xlab) s+='<text x="'+(W/2)+'" y="'+(H-2)+'" text-anchor="middle" font-size="11">'+esc(xlab)+'</text>';
+  return s+'</svg>';
+}
+
+function stemLeaf(rows, key){
+  var h='<table class="t stem"><tr><th>Batang</th><th>Daun</th></tr>';
+  rows.forEach(function(r){ h+='<tr><td>'+r[0]+'</td><td style="text-align:left">'+r[1].join(' ')+'</td></tr>'; });
+  return h+'</table><div class="muted">Kekunci: '+key+'</div>';
+}
+
+/* Histogram: kelas berturutan, palang bersentuhan */
+function histogram(classes, freq, opt){
+  opt=opt||{};
+  var W=360,H=230,L=40,B=40,T=24,R=10,pw=W-L-R,ph=H-T-B,n=classes.length;
+  var max=opt.max||Math.max.apply(null,freq), step=opt.step||2; max=Math.ceil(max/step)*step;
+  var s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img">';
+  if(opt.title) s+='<text x="'+(W/2)+'" y="16" text-anchor="middle" font-size="13" font-weight="700">'+esc(opt.title)+'</text>';
+  for(var v=0; v<=max; v+=step){ var y=T+ph-(v/max)*ph; s+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#e3e7f0"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11">'+v+'</text>'; }
+  var bw=pw/n, pts=[];
+  for(var i=0;i<n;i++){
+    var x=L+bw*i, h=(freq[i]/max)*ph;
+    s+='<rect x="'+x+'" y="'+(T+ph-h)+'" width="'+bw+'" height="'+h+'" fill="#9fb4f5" stroke="#2f5bea"/>';
+    s+='<text x="'+(x+bw/2)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="10">'+esc(classes[i])+'</text>';
+    pts.push((x+bw/2).toFixed(1)+','+(T+ph-h).toFixed(1));
+  }
+  if(opt.polygon){ s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#c0392b" stroke-width="2.5"/>'; pts.forEach(function(p){var q=p.split(',');s+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="#c0392b"/>';}); }
+  s+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#1d2433"/><line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#1d2433"/>';
+  if(opt.xlab) s+='<text x="'+(L+pw/2)+'" y="'+(H-6)+'" font-size="11" text-anchor="middle">'+esc(opt.xlab)+'</text>';
+  return s+'</svg>';
+}
+
+/* ================= KANDUNGAN MODUL (rujukan: DSKP KSSM Matematik T1, hlm 78-80) ================= */
+/* Jenis soalan: mcq {opts, ans:index, fb:{index:mesej miskonsepsi}} | num {ans:nombor, unit} */
+var MODS = [
+{
+  id:"m1", sp:"12.1.1", icon:"🔍", title:"Soalan Statistik & Pengumpulan Data",
+  objective:"Menjana soalan statistik dan mengumpul data yang relevan.",
+  diag:[
+    {type:"mcq", q:"Yang manakah <b>soalan statistik</b>?", opts:["Berapakah umur saya?","Berapakah bilangan adik-beradik murid di kelas 1 Bestari?","Berapakah 5 + 7?","Pukul berapa sekolah bermula esok?"], ans:1,
+     expl:"Soalan statistik dijawab dengan mengumpul data, dan jawapannya berbeza-beza (ada kebolehubahan)."},
+    {type:"mcq", q:"Ahmad mahu tahu bilangan kenderaan yang lalu di hadapan sekolah antara 7.00 dan 8.00 pagi. Kaedah paling sesuai ialah …", opts:["Temu bual","Pemerhatian","Eksperimen","Membaca buku teks"], ans:1,
+     expl:"Kenderaan dikira sambil diperhatikan, jadi kaedahnya pemerhatian."}
+  ],
+  note:
+    '<h3>1. Apakah soalan statistik?</h3>'+
+    '<div class="note">Soalan statistik ialah soalan yang <b>boleh dijawab dengan mengumpul data</b>, dan data itu <b>berbeza-beza</b> (ada kebolehubahan).</div>'+
+    table(["Soalan statistik ✅","Bukan soalan statistik ❌"],[
+      ["Berapakah tinggi murid Tingkatan 1 Amanah?","Berapakah tinggi Ali?"],
+      ["Apakah sukan kegemaran murid sekolah ini?","Apakah sukan kegemaran saya?"],
+      ["Berapa jam murid T1 tidur setiap malam?","Berapakah tinggi Menara KL?"]
+    ])+
+    '<h3>2. Kaedah mengumpul data</h3>'+
+    table(["Kaedah","Bila digunakan","Contoh"],[
+      ["Temu bual","Bertanya terus kepada orang","Menemu bual 5 guru tentang waktu tidur"],
+      ["Tinjauan","Ramai responden, guna borang soal selidik","Borang menu kegemaran kantin"],
+      ["Eksperimen","Menguji dan mengukur sesuatu","Mengukur masa ais cair pada suhu berbeza"],
+      ["Pemerhatian","Melihat dan mengira kejadian","Mengira kenderaan di hadapan sekolah"]
+    ])+
+    '<h3>3. Inkuiri statistik (6 langkah)</h3>'+
+    '<ol><li>Mengemukakan masalah, merancang dan mengumpul data</li><li>Mengorganisasikan data</li><li>Memaparkan / mewakilkan data</li><li>Menganalisis data</li><li>Mentafsir dan membuat kesimpulan</li><li>Mengkomunikasikan hasil</li></ol>'+
+    '<h3>4. Data yang relevan</h3>'+
+    '<div class="note">Data relevan ialah data yang <b>benar-benar menjawab soalan</b>. Jika soalan tentang waktu tidur murid T1, kumpul waktu tidur murid T1, bukan berat badan mereka.</div>'+
+    '<h3>Contoh lengkap</h3>'+
+    '<div class="databox"><b>Masalah:</b> Kantin mahu menambah satu menu sarapan.<br><b>Soalan statistik:</b> "Apakah menu sarapan kegemaran murid sekolah ini?"<br><b>Kaedah:</b> tinjauan kepada murid dari semua tingkatan, bukan rakan sekelas sahaja.<br><b>Data relevan:</b> menu pilihan setiap murid.</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Soalan statistik → kumpul data → jawapan berbeza-beza.</li><li>Pilih kaedah yang sesuai: temu bual, tinjauan, eksperimen atau pemerhatian.</li><li>Kumpul data daripada kumpulan yang betul dan elak soalan berat sebelah.</li></ul>',
+  wedo:[
+    {type:"mcq", q:"Tukar soalan <i>\"Adakah Siti suka nasi lemak?\"</i> menjadi soalan statistik.", opts:["Adakah Siti suka roti canai?","Apakah makanan sarapan kegemaran murid Tingkatan 1?","Berapakah harga nasi lemak di kantin?","Siapakah yang memasak nasi lemak?"], ans:1,
+     hint:"Soalan statistik melibatkan <b>ramai orang</b> dan jawapannya berbeza-beza.",
+     fb:{0:"Soalan ini masih tentang seorang sahaja (Siti).",2:"Harga nasi lemak satu nilai sahaja, tiada kebolehubahan."}}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"mcq", q:"Soalan statistik ialah soalan yang …", opts:["mempunyai satu jawapan tepat sahaja","boleh dijawab dengan mengumpul data yang berbeza-beza","hanya melibatkan nombor","dijawab dengan rumus"], ans:1,
+     fb:{0:"Jika jawapannya hanya satu, ia bukan soalan statistik.",2:"Data kategori (contoh: warna) juga boleh menjawab soalan statistik."}, hint:"Fikirkan: perlukah kita bertanya kepada ramai orang?"},
+    {lvl:"Rendah", type:"mcq", q:"Murid menjatuhkan bola dari ketinggian berbeza dan mengukur tinggi lantunan. Kaedah ini ialah …", opts:["Temu bual","Tinjauan","Eksperimen","Pemerhatian"], ans:2,
+     fb:{3:"Pemerhatian hanya melihat kejadian. Di sini murid mengubah ketinggian dan mengukur hasil, jadi ia eksperimen."}, hint:"Murid <b>menguji</b> dan <b>mengukur</b> sesuatu."},
+    {lvl:"Sederhana", type:"mcq", q:"Yang manakah <b>bukan</b> soalan statistik?", opts:["Berapakah jisim beg sekolah murid T1?","Berapakah tinggi Menara Kuala Lumpur?","Apakah warna kegemaran murid kelas 1 Cekal?","Berapa minit murid berjalan ke sekolah?"], ans:1,
+     fb:{0:"Jisim beg berbeza bagi setiap murid, jadi ini soalan statistik."}, hint:"Cari soalan yang jawapannya <b>satu nilai tetap</b>."},
+    {lvl:"Sederhana", type:"mcq", q:"Soalan: <i>\"Berapa jam murid T1 tidur setiap malam?\"</i> Data manakah yang relevan?", opts:["Berat badan murid T1","Bilangan jam tidur setiap murid T1","Waktu tidur guru","Bilangan jam tidur murid T5"], ans:1,
+     fb:{3:"Soalan tentang murid T1, jadi data murid T5 tidak relevan.",2:"Soalan tentang murid, bukan guru."}, hint:"Data mesti menjawab soalan untuk <b>kumpulan yang betul</b>."},
+    {lvl:"Tinggi", type:"mcq", q:"Susunan langkah inkuiri statistik yang betul ialah …", opts:["Kumpul data → rumus masalah → wakilkan → tafsir","Rumus masalah → kumpul data → susun data → wakilkan → analisis → tafsir → komunikasi","Wakilkan → kumpul data → analisis → rumus masalah","Tafsir → wakilkan → susun → kumpul"], ans:1,
+     fb:{0:"Kita perlu tahu masalahnya dahulu sebelum mengumpul data."}, hint:"Langkah pertama ialah memahami <b>masalah</b>."},
+    {lvl:"Tinggi", type:"mcq", q:"Rina mahu tahu sukan kegemaran murid <b>seluruh sekolah</b>. Dia hanya bertanya kepada 5 kawan baiknya. Apakah masalahnya?", opts:["Tiada masalah","Data tidak mewakili seluruh sekolah","Dia patut guna eksperimen","Soalannya bukan soalan statistik"], ans:1,
+     fb:{0:"Kawan baik biasanya ada minat yang sama, jadi dapatan boleh berat sebelah.",3:"Soalannya statistik, masalahnya ialah siapa yang ditanya."}, hint:"Adakah 5 kawan baik <b>mewakili</b> ratusan murid?"},
+    {lvl:"KBAT", type:"mcq", q:"Amir menulis soalan tinjauan: <i>\"Adakah anda setuju makanan kantin sangat teruk?\"</i> Apakah kelemahan soalan ini?", opts:["Soalan terlalu pendek","Soalan berat sebelah dan mempengaruhi jawapan","Soalan tidak menggunakan nombor","Tiada kelemahan"], ans:1,
+     fb:{2:"Soalan tinjauan tidak semestinya bernombor.",3:"Perkataan \"sangat teruk\" mendorong responden menjawab setuju."}, hint:"Perhatikan perkataan <b>\"sangat teruk\"</b>."},
+    {lvl:"KBAT", type:"mcq", q:"Pengurus kantin mahu memilih satu menu baharu. Pelan manakah yang <b>paling baik</b>?", opts:["Tanya pengetua sahaja","Tinjauan: \"Apakah menu sarapan kegemaran anda?\" kepada murid dari setiap tingkatan","Perhati menu yang dimakan oleh 3 orang guru","Pilih menu yang paling murah"], ans:1,
+     fb:{0:"Seorang sahaja tidak mewakili pembeli kantin.",2:"Guru bukan pembeli utama, dan 3 orang terlalu sedikit."}, hint:"Pelan yang baik: soalan statistik + kaedah sesuai + responden yang <b>mewakili</b>."}
+  ],
+  exit:[
+    {type:"mcq", q:"Yang manakah soalan statistik?", opts:["Berapakah bilangan buku yang dibaca oleh murid T1 bulan ini?","Berapakah bilangan buku yang saya baca semalam?","Siapakah penulis buku ini?"], ans:0},
+    {type:"mcq", q:"Untuk mengukur masa yang diambil ais untuk cair pada suhu berbeza, kaedah yang sesuai ialah …", opts:["Tinjauan","Eksperimen","Temu bual"], ans:1}
+  ]
+},
+{
+  id:"m2", sp:"12.1.2", icon:"🗂️", title:"Klasifikasi Data & Jadual Kekerapan",
+  objective:"Mengklasifikasikan data kepada data kategori atau data numerik (diskret/selanjar) dan membina jadual kekerapan.",
+  diag:[
+    {type:"mcq", q:"\"Warna kegemaran murid\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:0, expl:"Warna bukan nombor. Ia ialah kategori."},
+    {type:"mcq", q:"\"Bilangan adik-beradik\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:1, expl:"Bilangan dibilang (0, 1, 2, …), jadi numerik diskret."}
+  ],
+  note:
+    '<h3>1. Jenis data</h3>'+
+    table(["Jenis","Maksud","Contoh"],[
+      ["Data kategori","Bukan nilai yang diukur atau dibilang; dikumpul mengikut kumpulan","Warna, jenis kenderaan, sukan kegemaran, nombor jersi"],
+      ["Numerik diskret","Nombor yang <b>dibilang</b>; nilai tertentu sahaja","Bilangan adik-beradik, bilangan buku"],
+      ["Numerik selanjar","Nombor yang <b>diukur</b>; boleh ada perpuluhan","Tinggi, jisim, masa, suhu"]
+    ])+
+    '<div class="warn">⚠️ Nombor jersi atau nombor telefon ialah <b>label</b>, bukan kuantiti. Ia data kategori.</div>'+
+    '<h3>2. Jadual kekerapan</h3>'+
+    '<div class="note">Kekerapan = berapa kali sesuatu data muncul. Guna <b>gundalan</b> untuk membilang: setiap ikatan ialah 5.</div>'+
+    '<div class="databox">Gundalan untuk 7: '+tally(7)+'</div>'+
+    '<h3>Contoh lengkap</h3>'+
+    '<div class="databox"><b>Data warna kegemaran 10 murid:</b><br>Merah, Biru, Merah, Hijau, Biru, Merah, Kuning, Biru, Merah, Hijau</div>'+
+    table(["Warna","Gundalan","Kekerapan"],[["Merah",tally(4),"4"],["Biru",tally(3),"3"],["Hijau",tally(2),"2"],["Kuning",tally(1),"1"],["<b>Jumlah</b>","","<b>10</b>"]])+
+    '<div class="note">Semakan: jumlah kekerapan mesti sama dengan bilangan data (10).</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Kategori: label/kumpulan. Numerik: kuantiti.</li><li>Diskret dibilang, selanjar diukur.</li><li>Jumlah kekerapan = bilangan data.</li></ul>',
+  wedo:[
+    {type:"num", q:'Data skor dadu:<div class="databox">3, 5, 2, 3, 6, 1, 3, 5, 4, 3, 2, 6, 3, 5, 1</div>Berapakah kekerapan skor <b>3</b>?', ans:5,
+     hint:"Tandakan setiap 3 satu demi satu. Kira gundalan, bukan kedudukan."}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"mcq", q:"\"Tinggi murid (cm)\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:2,
+     fb:{1:"Tinggi diukur dan boleh ada perpuluhan (contoh: 152.5 cm), jadi selanjar."}, hint:"Adakah tinggi <b>dibilang</b> atau <b>diukur</b>?"},
+    {lvl:"Rendah", type:"mcq", q:"\"Jenis kenderaan ke sekolah (bas, kereta, motosikal)\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:0,
+     fb:{1:"Jenis kenderaan bukan nombor yang dibilang. Ia kumpulan/label."}, hint:"Adakah jawapannya nombor atau nama kumpulan?"},
+    {lvl:"Sederhana", type:"num", q:'Berapakah kekerapan yang ditunjukkan oleh gundalan ini?<div class="databox">'+tally(8)+'</div>', ans:8,
+     hint:"Satu ikatan (dengan garis condong) = 5. Tambah garis yang selebihnya."},
+    {lvl:"Sederhana", type:"num", q:'Jadual kekerapan saiz kasut:'+table(["Saiz","4","5","6","7"],[["Kekerapan","3","7","6","4"]])+'Berapakah <b>jumlah</b> murid?', ans:20,
+     hint:"Tambah semua kekerapan: 3 + 7 + 6 + 4."},
+    {lvl:"Tinggi", type:"num", q:'Berdasarkan jadual saiz kasut yang sama:'+table(["Saiz","4","5","6","7"],[["Kekerapan","3","7","6","4"]])+'Berapakah bilangan murid yang memakai saiz <b>6 atau lebih</b>?', ans:10,
+     hint:"\"6 atau lebih\" = saiz 6 dan saiz 7."},
+    {lvl:"Tinggi", type:"mcq", q:"\"Nombor jersi pemain bola sepak\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:0,
+     fb:{1:"Walaupun bernombor, nombor jersi hanya label. Purata nombor jersi tidak bermakna."}, hint:"Adakah nombor itu mengukur <b>kuantiti</b>, atau sekadar label?"},
+    {lvl:"KBAT", type:"num", q:'Sebuah jadual kekerapan mempunyai jumlah 30 orang murid.'+table(["Kumpulan","A","B","C","D"],[["Kekerapan","8","?","12","4"]])+'Berapakah kekerapan kumpulan <b>B</b>?', ans:6,
+     hint:"Jumlah = 30. Tolak kekerapan yang diketahui: 30 − 8 − 12 − 4."},
+    {lvl:"KBAT", type:"mcq", q:"Siti berkata: <i>\"Masa larian 100 m ialah data diskret kerana ia ditulis dengan nombor.\"</i> Adakah Siti betul?", opts:["Betul, semua nombor ialah data diskret","Salah, masa diukur dan boleh ada perpuluhan, jadi selanjar","Salah, masa ialah data kategori"], ans:1,
+     fb:{0:"Nombor boleh jadi diskret atau selanjar. Masa (contoh: 13.47 s) diukur, jadi selanjar.",2:"Masa ialah kuantiti, bukan label."}, hint:"Masa larian boleh jadi 13.47 saat. Adakah itu dibilang atau diukur?"}
+  ],
+  exit:[
+    {type:"mcq", q:"\"Jisim beg sekolah (kg)\" ialah data …", opts:["Kategori","Numerik diskret","Numerik selanjar"], ans:2},
+    {type:"num", q:'Data: <div class="databox">A, B, A, C, A, B, A</div>Berapakah kekerapan <b>A</b>?', ans:4}
+  ]
+},
+{
+  id:"m3", sp:"12.1.3", icon:"📊", title:"Membina Perwakilan Data",
+  objective:"Membina perwakilan data tak terkumpul (carta palang, carta pai, graf garis, plot titik, plot batang-dan-daun) dan menjustifikasikan kesesuaiannya.",
+  diag:[
+    {type:"mcq", q:"Perwakilan yang paling sesuai untuk menunjukkan <b>perubahan suhu</b> dari Isnin hingga Jumaat ialah …", opts:["Carta pai","Graf garis","Plot batang-dan-daun"], ans:1, expl:"Graf garis menunjukkan perubahan mengikut masa."},
+    {type:"mcq", q:"Dalam plot batang-dan-daun dengan kekunci 4 | 7 = 47, maksud <b>3 | 5</b> ialah …", opts:["8","35","53"], ans:1, expl:"Batang = puluh, daun = sa. 3 | 5 = 35."}
+  ],
+  note:
+    '<h3>1. Lima perwakilan data dan kegunaannya</h3>'+
+    table(["Perwakilan","Paling sesuai untuk"],[
+      ["Carta palang","Membandingkan kekerapan antara kategori"],
+      ["Carta pai","Menunjukkan bahagian daripada keseluruhan"],
+      ["Graf garis","Menunjukkan perubahan mengikut masa"],
+      ["Plot titik","Taburan data numerik yang sedikit"],
+      ["Plot batang-dan-daun","Data numerik dengan nilai asal dikekalkan"]
+    ])+
+    '<h3>2. Sudut sektor carta pai</h3>'+
+    '<div class="note"><b>Sudut sektor = (kekerapan ÷ jumlah) × 360°</b></div>'+
+    '<div class="databox">Contoh: 30 murid, 10 orang suka bola sepak.<br>Sudut = 10 ÷ 30 × 360° = <b>120°</b></div>'+
+    '<h3>3. Contoh carta palang</h3>'+barChart(["Isnin","Selasa","Rabu","Khamis"],[5,8,3,6],{title:"Bilangan murid hadir kelab",ylab:"Bilangan murid"})+
+    '<h3>4. Contoh plot titik</h3>'+dotPlot(0,4,{0:2,1:4,2:5,3:3,4:1},"Bilangan buku dibaca")+
+    '<div class="muted">Setiap titik = seorang murid.</div>'+
+    '<h3>5. Contoh plot batang-dan-daun</h3>'+
+    '<div class="databox">Data: 23, 27, 31, 35, 35, 42</div>'+stemLeaf([[2,[3,7]],[3,[1,5,5]],[4,[2]]],"2 | 3 bermaksud 23")+
+    '<div class="note">Daun disusun dari kecil ke besar. Nilai yang berulang ditulis berulang.</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Bandingkan kategori → palang. Bahagian keseluruhan → pai. Masa → garis.</li><li>Data numerik sedikit → plot titik atau batang-dan-daun.</li><li>Jumlah semua sudut carta pai = 360°.</li></ul>',
+  wedo:[
+    {type:"num", q:"Seramai 40 murid ditanya warna kegemaran. 10 orang memilih biru. Hitung sudut sektor biru dalam carta pai.", ans:90, unit:"°",
+     hint:"Sudut = 10 ÷ 40 × 360°."}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"mcq", q:barChart(["Isnin","Selasa","Rabu","Khamis"],[5,8,3,6],{title:"Bilangan murid hadir kelab"})+"Hari manakah paling ramai murid hadir?", opts:["Isnin","Selasa","Rabu","Khamis"], ans:1,
+     fb:{3:"Khamis 6 orang, tetapi Selasa 8 orang."}, hint:"Cari palang yang <b>paling tinggi</b>."},
+    {lvl:"Rendah", type:"mcq", q:"Perwakilan manakah paling sesuai untuk menunjukkan <b>peratus perbelanjaan bulanan</b> sebuah keluarga mengikut jenis (makanan, sewa, pengangkutan)?", opts:["Graf garis","Carta pai","Plot titik"], ans:1,
+     fb:{0:"Tiada perubahan mengikut masa di sini."}, hint:"Data ini ialah <b>bahagian daripada keseluruhan</b> pendapatan."},
+    {lvl:"Sederhana", type:"num", q:"Seramai 60 murid ditinjau. 15 orang memilih nasi lemak. Hitung sudut sektor nasi lemak.", ans:90, unit:"°",
+     hint:"15 ÷ 60 × 360°."},
+    {lvl:"Sederhana", type:"mcq", q:'Data: <div class="databox">23, 27, 31, 35, 35, 42</div>Baris batang <b>3</b> dalam plot batang-dan-daun ialah …', opts:["3 | 1 5","3 | 1 5 5","3 | 31 35 35","3 | 5 5 1"], ans:1,
+     fb:{0:"Nilai 35 muncul dua kali, jadi daun 5 ditulis dua kali.",2:"Daun hanya digit sa sahaja.",3:"Daun disusun dari kecil ke besar."}, hint:"Daun = digit sa. Tulis setiap nilai, termasuk yang berulang."},
+    {lvl:"Tinggi", type:"num", q:dotPlot(0,4,{0:2,1:4,2:5,3:3,4:1},"Bilangan buku dibaca")+"Berapakah bilangan murid yang membaca <b>3 buku atau lebih</b>?", ans:4,
+     hint:"Kira titik pada 3 dan pada 4."},
+    {lvl:"Tinggi", type:"num", q:dotPlot(0,4,{0:2,1:4,2:5,3:3,4:1},"Bilangan buku dibaca")+"Berapakah <b>jumlah</b> murid yang ditinjau?", ans:15,
+     hint:"Setiap titik = seorang murid. Kira semua titik."},
+    {lvl:"KBAT", type:"num", q:"Dalam sebuah carta pai, sektor B bersudut 90°. Jumlah murid ialah 48 orang. Berapakah bilangan murid dalam sektor B?", ans:12,
+     hint:"90° ialah ¼ daripada 360°. Jadi ¼ daripada 48."},
+    {lvl:"KBAT", type:"mcq", q:"Data \"jenis kenderaan ke sekolah\" akan diwakilkan. Perwakilan manakah <b>tidak sesuai</b>, dan mengapa?", opts:["Carta palang, kerana data kategori","Graf garis, kerana kategori tidak mempunyai susunan masa","Carta pai, kerana ia menunjukkan bahagian keseluruhan"], ans:1,
+     fb:{0:"Carta palang sesuai untuk data kategori.",2:"Carta pai sesuai kerana setiap jenis ialah sebahagian daripada semua murid."}, hint:"Garis yang menyambung titik membayangkan <b>perubahan</b>. Adakah bas \"berubah\" menjadi kereta?"}
+  ],
+  exit:[
+    {type:"mcq", q:"Untuk menunjukkan jualan kedai dari Januari hingga Jun, perwakilan paling sesuai ialah …", opts:["Graf garis","Carta pai","Plot batang-dan-daun"], ans:0},
+    {type:"num", q:"36 murid ditinjau, 9 orang memilih bola tampar. Hitung sudut sektor bola tampar.", ans:90, unit:"°"}
+  ]
+},
+{
+  id:"m4", sp:"12.1.4", icon:"🔄", title:"Menukar Perwakilan Data",
+  objective:"Menukar satu perwakilan data kepada perwakilan lain yang sesuai serta memberi justifikasi.",
+  diag:[
+    {type:"mcq", q:"Apabila jadual kekerapan ditukar kepada carta palang, tinggi setiap palang mewakili …", opts:["Jumlah semua data","Kekerapan kategori itu","Sudut sektor"], ans:1, expl:"Tinggi palang = kekerapan."},
+    {type:"mcq", q:"Perwakilan manakah mengekalkan <b>nilai asal</b> setiap data?", opts:["Carta pai","Plot batang-dan-daun","Carta palang"], ans:1, expl:"Setiap daun ialah satu nilai asal."}
+  ],
+  note:
+    '<h3>1. Mengapa menukar perwakilan?</h3>'+
+    '<div class="note">Setiap perwakilan menonjolkan perkara berbeza. Kita menukar perwakilan supaya data lebih mudah difahami untuk <b>tujuan tertentu</b>, dan memberi <b>justifikasi</b> pilihan itu.</div>'+
+    '<h3>2. Penukaran biasa</h3>'+
+    table(["Daripada","Kepada","Cara"],[
+      ["Jadual kekerapan","Carta palang","Tinggi palang = kekerapan"],
+      ["Jadual / palang","Carta pai","Sudut = kekerapan ÷ jumlah × 360°"],
+      ["Carta pai (sudut)","Jadual kekerapan","Kekerapan = sudut ÷ 360° × jumlah"],
+      ["Plot batang-dan-daun","Plot titik","Satu titik bagi setiap daun"],
+      ["Jadual mengikut masa","Graf garis","Plot setiap nilai mengikut tempoh"]
+    ])+
+    '<h3>Contoh lengkap</h3>'+barChart(["A","B","C","D"],[6,9,3,12],{title:"Kekerapan pilihan 30 murid"})+
+    table(["Pilihan","Kekerapan","Sudut sektor"],[["A","6","6 ÷ 30 × 360° = 72°"],["B","9","9 ÷ 30 × 360° = 108°"],["C","3","3 ÷ 30 × 360° = 36°"],["D","12","12 ÷ 30 × 360° = 144°"],["<b>Jumlah</b>","<b>30</b>","<b>360°</b>"]])+
+    pieChart(["A","B","C","D"],[6,9,3,12],{showAngle:true})+
+    '<div class="note"><b>Justifikasi:</b> carta pai lebih sesuai jika kita mahu menunjukkan <b>bahagian setiap pilihan daripada semua murid</b>. Carta palang lebih sesuai untuk membandingkan bilangan sebenar.</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Palang ↔ jadual: tinggi = kekerapan.</li><li>Pai ↔ jadual: perlu tahu jumlah keseluruhan.</li><li>Sentiasa beri sebab mengapa perwakilan baharu lebih sesuai.</li></ul>',
+  wedo:[
+    {type:"num", q:barChart(["A","B","C","D"],[6,9,3,12],{title:"Kekerapan pilihan 30 murid"})+"Tukar carta palang ini kepada carta pai. Berapakah sudut sektor <b>D</b>?", ans:144, unit:"°",
+     hint:"D = 12 daripada 30. Sudut = 12 ÷ 30 × 360°."}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"num", q:barChart(["Merah","Biru","Hijau"],[4,7,5],{title:"Warna kegemaran"})+"Jika carta ini ditukar kepada jadual kekerapan, apakah kekerapan <b>Biru</b>?", ans:7,
+     hint:"Baca tinggi palang Biru pada paksi tegak."},
+    {lvl:"Rendah", type:"mcq", q:"Plot titik boleh ditukar kepada perwakilan manakah <b>tanpa kehilangan nilai asal</b>?", opts:["Plot batang-dan-daun","Carta pai","Graf garis"], ans:0,
+     fb:{1:"Carta pai menunjukkan bahagian sahaja, bukan nilai setiap data."}, hint:"Perwakilan mana yang menulis setiap nilai satu demi satu?"},
+    {lvl:"Sederhana", type:"num", q:"Sebuah carta pai mewakili 200 murid. Sektor bola sepak ialah 25%. Jika ditukar kepada carta palang, berapakah tinggi palang bola sepak?", ans:50, unit:"murid",
+     hint:"25% daripada 200."},
+    {lvl:"Sederhana", type:"num", q:'Plot batang-dan-daun:'+stemLeaf([[1,[2,5,8]],[2,[0,4]]],"1 | 2 bermaksud 12")+'Jika ditukar kepada plot titik, berapakah bilangan titik?', ans:5,
+     hint:"Satu titik bagi setiap daun. Kira semua daun."},
+    {lvl:"Tinggi", type:"mcq", q:'Jualan kedai (unit):'+table(["Bulan","Jan","Feb","Mac","Apr","Mei","Jun"],[["Jualan","20","25","22","30","35","40"]])+'Perwakilan manakah paling sesuai, dan mengapa?', opts:["Carta pai, kerana ada 6 bulan","Graf garis, kerana menunjukkan perubahan jualan mengikut masa","Plot titik, kerana datanya kecil"], ans:1,
+     fb:{0:"Bulan bukan bahagian daripada satu keseluruhan yang mahu dibandingkan."}, hint:"Apakah yang berubah dari bulan ke bulan?"},
+    {lvl:"Tinggi", type:"mcq", q:pieChart(["Bola sepak","Badminton","Bola jaring"],[90,180,90],{showAngle:true})+"Carta pai ini mewakili 40 murid. Jadual kekerapan yang betul ialah …", opts:["10, 20, 10","90, 180, 90","4, 8, 4","20, 10, 10"], ans:0,
+     fb:{1:"Itu sudut, bukan kekerapan. Kekerapan = sudut ÷ 360° × 40.",3:"Badminton bersudut 180°, iaitu separuh. Jadi badminton 20 orang."}, hint:"90° ÷ 360° × 40 = ?"},
+    {lvl:"KBAT", type:"mcq", q:"Sebuah carta pai tidak menyatakan jumlah murid. Bolehkah kita menukarnya kepada carta palang yang menunjukkan <b>bilangan sebenar</b> murid?", opts:["Boleh, gunakan sudut sebagai tinggi palang","Tidak boleh, kerana jumlah keseluruhan tidak diketahui","Boleh, kerana jumlah sentiasa 100"], ans:1,
+     fb:{0:"Sudut bukan bilangan murid.",2:"100 ialah peratus, bukan bilangan murid."}, hint:"Kekerapan = sudut ÷ 360° × <b>jumlah</b>. Apa yang hilang?"},
+    {lvl:"KBAT", type:"mcq", q:"Jumlah murid 40, dan kekerapan kumpulan A ialah 10. Aina mengira sudut A = 10 ÷ 100 × 360° = 36°. Apakah kesilapannya?", opts:["Tiada kesilapan","Dia membahagi dengan 100, sepatutnya dengan jumlah 40, jadi 90°","Dia patut darab dengan 100","Sudut sepatutnya 10°"], ans:1,
+     fb:{0:"10 daripada 40 ialah ¼, dan ¼ daripada 360° = 90°.",3:"Kekerapan bukan sudut."}, hint:"Pembahagi mestilah <b>jumlah data</b>."}
+  ],
+  exit:[
+    {type:"num", q:"Carta pai mewakili 60 murid. Sektor P bersudut 120°. Berapakah kekerapan P?", ans:20},
+    {type:"mcq", q:"Untuk membandingkan bilangan sebenar murid dalam setiap kelab, perwakilan terbaik ialah …", opts:["Carta palang","Graf garis","Carta pai tanpa jumlah"], ans:0}
+  ]
+},
+{
+  id:"m5", sp:"12.1.5", icon:"🔮", title:"Mentafsir Data: Inferens & Ramalan",
+  objective:"Mentafsir pelbagai perwakilan data termasuk histogram dan poligon kekerapan, serta membuat inferens atau ramalan.",
+  diag:[
+    {type:"mcq", q:"Ciri histogram ialah …", opts:["Palang terpisah dengan ruang","Palang bersentuhan kerana data selanjar","Bulatan yang dibahagi kepada sektor"], ans:1, expl:"Histogram untuk data selanjar terkumpul, jadi palang bersentuhan."},
+    {type:"mcq", q:"Titik pada poligon kekerapan diplot pada …", opts:["Hujung kiri setiap kelas","Titik tengah setiap kelas","Sempadan atas paksi"], ans:1, expl:"Poligon kekerapan menyambung titik tengah bahagian atas setiap palang."}
+  ],
+  note:
+    '<h3>1. Histogram</h3>'+
+    '<div class="note">Histogram mewakili data <b>selanjar yang dikumpulkan dalam kelas</b>. Palangnya <b>bersentuhan</b>. Tinggi palang = kekerapan kelas.</div>'+
+    histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Tinggi 25 murid (cm)",xlab:"Tinggi (cm)"})+
+    '<h3>2. Poligon kekerapan</h3>'+
+    '<div class="note">Sambung <b>titik tengah</b> bahagian atas setiap palang. Titik tengah kelas = (had bawah + had atas) ÷ 2. Contoh: (150 + 154) ÷ 2 = <b>152</b>.</div>'+
+    histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Histogram dan poligon kekerapan",polygon:true})+
+    '<h3>3. Mentafsir, inferens dan ramalan</h3>'+
+    '<ul><li><b>Tafsir:</b> baca nilai, cari nilai tertinggi/terendah, bandingkan.</li><li><b>Inferens:</b> buat kesimpulan yang disokong data. Inferens hanya sah untuk kumpulan yang ditinjau.</li><li><b>Ramalan:</b> lanjutkan corak (trend) untuk menganggar nilai akan datang.</li></ul>'+
+    '<h3>Contoh lengkap</h3>'+lineGraph(["2021","2022","2023","2024"],[20,25,30,35],{title:"Bilangan ahli kelab",max:40,step:10})+
+    '<div class="databox">Corak: bertambah 5 orang setiap tahun.<br>Ramalan 2025: 35 + 5 = <b>40 orang</b> (jika corak berterusan).</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Histogram: palang bersentuhan, data selanjar dalam kelas.</li><li>Poligon kekerapan: sambung titik tengah.</li><li>Ramalan bergantung pada corak berterusan, jadi ia anggaran.</li></ul>',
+  wedo:[
+    {type:"mcq", q:histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Tinggi 25 murid (cm)"})+"Kelas manakah mempunyai kekerapan tertinggi?", opts:["140-144","145-149","150-154","155-159"], ans:2,
+     hint:"Cari palang yang paling tinggi.", fb:{3:"155-159 hanya 5 orang."}}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"num", q:histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Tinggi 25 murid (cm)"})+"Berapakah kekerapan kelas <b>145-149</b>?", ans:7,
+     hint:"Baca tinggi palang kedua pada paksi tegak."},
+    {lvl:"Rendah", type:"num", q:"Hitung titik tengah kelas <b>155-159</b>.", ans:157,
+     hint:"(155 + 159) ÷ 2."},
+    {lvl:"Sederhana", type:"num", q:lineGraph(["2021","2022","2023","2024"],[20,25,30,35],{title:"Jualan buku (unit)",max:40,step:10})+"Jika corak berterusan, ramalkan jualan pada tahun 2025.", ans:40,
+     hint:"Berapa unit bertambah setiap tahun?"},
+    {lvl:"Sederhana", type:"num", q:histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Tinggi murid (cm)"})+"Berapakah <b>jumlah</b> murid?", ans:25,
+     hint:"Tambah semua kekerapan: 3 + 7 + 10 + 5."},
+    {lvl:"Tinggi", type:"num", q:histogram(["140-144","145-149","150-154","155-159"],[3,7,10,5],{title:"Tinggi 25 murid (cm)"})+"Berapakah <b>peratus</b> murid yang tingginya 150 cm atau lebih?", ans:60, unit:"%",
+     hint:"Murid 150 cm atau lebih = kelas 150-154 dan 155-159. Kemudian bahagi dengan 25 dan darab 100."},
+    {lvl:"Tinggi", type:"mcq", q:"Tinjauan terhadap 25 murid T1 di sebuah kelas mendapati 20 orang suka badminton. Inferens manakah <b>paling sah</b>?", opts:["Semua murid di Malaysia suka badminton","Kebanyakan murid dalam kelas itu suka badminton","Badminton sukan paling popular di dunia"], ans:1,
+     fb:{0:"Data hanya daripada satu kelas. Kita tidak boleh meluaskan kepada semua murid di Malaysia."}, hint:"Inferens hanya sah untuk <b>kumpulan yang ditinjau</b>."},
+    {lvl:"KBAT", type:"num", q:lineGraph(["M1","M2","M3","M4"],[50,45,40,35],{title:"Pengunjung perpustakaan",max:60,step:10})+"Jika corak berterusan, ramalkan bilangan pengunjung pada <b>Minggu 6</b>.", ans:25,
+     hint:"Berkurang 5 setiap minggu. M5 = 30, M6 = ?"},
+    {lvl:"KBAT", type:"mcq", q:"Berdasarkan graf pengunjung yang menurun 5 orang setiap minggu, Danial meramalkan pengunjung pada Minggu 20 ialah −45 orang. Apakah pendapat anda?", opts:["Betul, kerana mengikut corak","Tidak munasabah, kerana bilangan pengunjung tidak boleh negatif. Ramalan jauh ke hadapan kurang tepat","Betul jika dibundarkan"], ans:1,
+     fb:{0:"Corak tidak semestinya berterusan selama-lamanya. Bilangan orang tidak boleh negatif.",2:"Pembundaran tidak membetulkan nilai negatif."}, hint:"Bolehkah bilangan orang menjadi negatif?"}
+  ],
+  exit:[
+    {type:"num", q:"Hitung titik tengah kelas 140-144.", ans:142},
+    {type:"mcq", q:"Dalam histogram, palang …", opts:["bersentuhan","dipisahkan dengan ruang","disusun dalam bulatan"], ans:0}
+  ]
+},
+{
+  id:"m6", sp:"12.1.6", icon:"⚖️", title:"Mewakilkan Data Secara Beretika",
+  objective:"Membincangkan kepentingan mewakilkan data secara beretika bagi mengelakkan kekeliruan.",
+  diag:[
+    {type:"mcq", q:bar2(["2025","2026"],[98,100],97,100,1,"Jualan (unit)")+"Graf ini membuatkan jualan 2026 nampak hampir 3 kali ganda. Mengapa?", opts:["Jualan memang naik 3 kali ganda","Paksi tegak tidak bermula dari 0","Warna palang berbeza"], ans:1, expl:"Paksi bermula pada 97, jadi beza kecil (2 unit) nampak besar."},
+    {type:"mcq", q:"Mengapa setiap graf perlu ada tajuk dan label paksi?", opts:["Supaya nampak cantik","Supaya pembaca faham apa yang diwakili","Tidak perlu"], ans:1, expl:"Tanpa label, pembaca boleh salah faham."}
+  ],
+  note:
+    '<h3>1. Apa itu perwakilan data beretika?</h3>'+
+    '<div class="note">Data diwakilkan dengan <b>jujur dan jelas</b> supaya pembaca membuat kesimpulan yang betul. Perwakilan yang mengelirukan boleh menyebabkan keputusan yang salah.</div>'+
+    '<h3>2. Cara graf boleh mengelirukan</h3>'+
+    table(["Masalah","Kesan"],[
+      ["Paksi tegak tidak bermula dari 0 (tanpa tanda putus)","Beza kecil nampak besar"],
+      ["Skala tidak seragam (0, 10, 20, 50, 100)","Corak data nampak berubah"],
+      ["Tiada tajuk atau label","Pembaca tidak tahu apa yang diukur"],
+      ["Memilih data tertentu sahaja","Hanya sebahagian cerita ditunjukkan"],
+      ["Sampel kecil atau berat sebelah","Kesimpulan tidak mewakili"],
+      ["Jumlah peratus carta pai bukan 100%","Data tidak konsisten"]
+    ])+
+    '<h3>Contoh lengkap</h3>'+
+    bar2(["2025","2026"],[98,100],97,100,1,"Graf A: paksi bermula 97")+
+    barChart(["2025","2026"],[98,100],{title:"Graf B: paksi bermula 0",max:100,step:20})+
+    '<div class="databox">Data sama: 98 unit → 100 unit. Kenaikan sebenar = 2 ÷ 98 × 100% ≈ <b>2%</b>.<br>Graf A mengelirukan. Graf B menunjukkan beza sebenar.</div>'+
+    '<h3>Rumusan pantas</h3><ul><li>Mula paksi pada 0, atau tunjukkan tanda putus paksi dengan jelas.</li><li>Guna skala seragam, tajuk dan label.</li><li>Tunjukkan semua data yang berkaitan dan nyatakan saiz sampel.</li></ul>',
+  wedo:[
+    {type:"mcq", q:"Graf A (paksi bermula 97) dan Graf B (paksi bermula 0) mewakili data yang sama. Graf manakah lebih jujur?", opts:["Graf A","Graf B","Kedua-duanya sama jujur"], ans:1,
+     hint:"Graf mana yang menunjukkan saiz beza sebenar?", fb:{0:"Graf A membesarkan beza 2 unit."}}
+  ],
+  bank:[
+    {lvl:"Rendah", type:"mcq", q:"Yang manakah boleh menjadikan graf palang <b>mengelirukan</b>?", opts:["Paksi tegak bermula dari 0","Paksi tegak bermula dari nilai besar tanpa tanda putus","Ada tajuk yang jelas"], ans:1,
+     fb:{0:"Paksi dari 0 menunjukkan saiz sebenar."}, hint:"Fikirkan Graf A dalam nota."},
+    {lvl:"Rendah", type:"mcq", q:"Graf tanpa label paksi boleh menyebabkan …", opts:["Pembaca salah faham apa yang diukur","Graf lebih tepat","Data bertambah"], ans:0,
+     fb:{1:"Label tidak mengubah ketepatan nilai, tetapi tanpanya pembaca keliru."}, hint:"Tanpa label, bagaimana pembaca tahu unitnya?"},
+    {lvl:"Sederhana", type:"mcq", q:"Jualan naik daripada 98 unit kepada 100 unit. Kenaikan sebenar lebih kurang …", opts:["2%","50%","200%"], ans:0,
+     fb:{2:"Itu anggaran daripada graf yang mengelirukan, bukan kenaikan sebenar.",1:"2 ÷ 98 × 100% bukan 50%."}, hint:"Kenaikan = 2. Peratus = 2 ÷ 98 × 100%."},
+    {lvl:"Sederhana", type:"mcq", q:"Paksi tegak sebuah graf ditanda 0, 10, 20, 50, 100 dengan jarak yang sama. Apakah masalahnya?", opts:["Skala tidak seragam","Tiada masalah","Nilai terlalu besar"], ans:0,
+     fb:{1:"Jarak 20→50 dan 50→100 tidak sama dengan 0→10, jadi bentuk graf terherot."}, hint:"Bandingkan beza antara setiap tanda: 10, 10, 30, 50."},
+    {lvl:"Tinggi", type:"mcq", q:"Sebuah carta pai menunjukkan: A 40%, B 35%, C 35%. Apakah masalahnya?", opts:["Tiada masalah","Jumlah 110%, melebihi 100%, jadi data salah atau mengelirukan","Warna tidak cukup"], ans:1,
+     fb:{0:"40 + 35 + 35 = 110."}, hint:"Jumlahkan semua peratus."},
+    {lvl:"Tinggi", type:"mcq", q:"Sebuah kedai hanya menunjukkan jualan bulan Disember (tertinggi) dalam iklan tahunan. Ini contoh …", opts:["Memilih data tertentu sahaja","Skala tidak seragam","Graf yang jujur"], ans:0,
+     fb:{2:"Hanya bulan terbaik ditunjukkan, jadi gambaran tahunan tidak lengkap."}, hint:"Adakah semua bulan ditunjukkan?"},
+    {lvl:"KBAT", type:"mcq", q:"Iklan: <i>\"9 daripada 10 doktor mengesyorkan ubat gigi ini!\"</i> Hanya 10 doktor ditanya. Apakah kritikan terbaik?", opts:["Iklan ini pasti benar","Sampel terlalu kecil dan mungkin dipilih, jadi kesimpulan tidak mewakili","Peratusnya salah kira"], ans:1,
+     fb:{2:"9 daripada 10 = 90%, kiraannya betul. Masalahnya pada sampel.",0:"Kiraan betul tidak bermaksud kesimpulan sah."}, hint:"Fikirkan <b>saiz</b> dan <b>cara memilih</b> sampel."},
+    {lvl:"KBAT", type:"mcq", q:"Anda mahu membaiki Graf A (paksi bermula 97). Tindakan manakah paling beretika?", opts:["Mulakan paksi tegak dari 0, atau tunjuk tanda putus paksi dengan jelas","Buang label paksi","Besarkan palang 2026 lagi"], ans:0,
+     fb:{1:"Membuang label menambah kekeliruan.",2:"Ini lebih mengelirukan."}, hint:"Pilih tindakan yang menunjukkan beza <b>sebenar</b>."}
+  ],
+  exit:[
+    {type:"mcq", q:"Mengapa perwakilan data perlu beretika?", opts:["Supaya pembaca membuat kesimpulan yang betul","Supaya graf nampak dramatik","Supaya data kelihatan lebih besar"], ans:0},
+    {type:"mcq", q:"Carta pai dengan jumlah peratus 120% adalah …", opts:["tepat","mengelirukan / salah","lebih lengkap"], ans:1}
+  ]
+}
+];
+
+/* ================= STATE ================= */
+function freshState(){
+  return { v:VERSION, name:"", kelas:"", startAt:0, endAt:0, path:["welcome"], cur:null, mods:{}, log:[] };
+}
+function freshMod(m){
+  var q=[]; for(var i=0;i<m.bank.length;i++) q.push(i);
+  return { phase:"intro", di:0, wi:0, queue:q, seen:{}, firstOk:{}, ei:0, exitScore:0, done:false };
+}
+var state = freshState();
+function loadState(){
+  try{
+    var saved = localStorage.getItem(KEY);
+    if(saved){ state = Object.assign(freshState(), JSON.parse(saved)); }
+  }catch(e){ state = freshState(); }
+  MODS.forEach(function(m){ state.mods[m.id] = Object.assign(freshMod(m), state.mods[m.id] || {}); });
+  if(!state.path || !state.path.length) state.path=["welcome"];
+}
+function saveState(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+/* UI sementara (tidak disimpan) */
+var ui = { sel:null, input:"", checked:false, ok:null, tries:0, showHint:false };
+function resetUi(){ ui = { sel:null, input:"", checked:false, ok:null, tries:0, showHint:false }; }
+
+/* ================= NAVIGASI (stack dalaman, tiada History API) ================= */
+function screen(){ return state.path[state.path.length-1]; }
+function goTo(s){ state.path.push(s); resetUi(); saveState(); render(); }
+function goBack(){
+  if(screen()==="mod"){ var m=state.mods[state.cur]; if(m && !m.done && m.phase!=="intro"){ /* keluar modul, kemajuan disimpan */ } }
+  if(state.path.length>1){ state.path.pop(); }
+  resetUi(); saveState(); render();
+}
+function goHome(){ state.path = state.name ? ["menu"] : ["welcome"]; resetUi(); saveState(); render(); }
+
+/* ================= LOG JAWAPAN ================= */
+function plain(html){ var d=document.createElement("div"); d.innerHTML=html.replace(/<svg[\s\S]*?<\/svg>/g," [rajah] ").replace(/<table[\s\S]*?<\/table>/g," [jadual] "); return (d.textContent||"").replace(/\s+/g," ").trim().slice(0,140); }
+function logAnswer(mod, phase, q, given, ok){
+  var correct = q.type==="mcq" ? q.opts[q.ans] : (q.ans + (q.unit?(" "+q.unit):""));
+  state.log.push({ m:mod.sp, p:phase, lvl:q.lvl||"", q:plain(q.q), a:String(given), c:String(correct), ok:ok });
+}
+
+/* ================= SEMAK JAWAPAN ================= */
+function isRight(q){
+  if(q.type==="mcq") return ui.sel===q.ans;
+  var v = parseFloat(String(ui.input).replace(",",".").replace(/[^0-9.\-]/g,""));
+  return !isNaN(v) && Math.abs(v - q.ans) < 0.01;
+}
+function givenText(q){ return q.type==="mcq" ? (ui.sel===null?"-":q.opts[ui.sel]) : (ui.input||"-"); }
+function canCheck(q){ return q.type==="mcq" ? ui.sel!==null : String(ui.input).trim()!==""; }
+
+/* ================= RENDER ================= */
+var app = document.getElementById("app");
+function topBar(title){
+  var back = state.path.length>1 ? '<button class="btn ghost small" onclick="goBack()">← Kembali</button>' : '';
+  var home = (screen()!=="menu" && state.name) ? '<button class="btn ghost small" onclick="goHome()">☰ Menu</button>' : '';
+  return '<div class="top">'+back+'<div class="sp"><b>'+(title||"")+'</b></div>'+home+'</div>';
+}
+function render(){
+  var s = screen(), h = "";
+  if(s==="welcome") h = scrWelcome();
+  else if(s==="form") h = scrForm();
+  else if(s==="menu") h = scrMenu();
+  else if(s==="mod") h = scrMod();
+  else if(s==="summary") h = scrSummary();
+  else if(s==="reset") h = scrReset();
+  else h = scrWelcome();
+  app.innerHTML = h;
+  window.scrollTo(0,0);
+  var inp = document.getElementById("numin"); if(inp){ inp.value = ui.input; }
+}
+
+function scrWelcome(){
+  return '<div class="card" style="text-align:center"><div class="big">📊</div><h1>Misi Penganalisis Data</h1>'+
+    '<div class="muted">Matematik Tingkatan 1 · Bab 12 Pengendalian Data</div>'+
+    '<p>6 misi mengikut Standard Pembelajaran 12.1.1 hingga 12.1.6. Setiap misi ada semakan awal, nota lengkap, latihan 4 aras dan tiket keluar.</p>'+
+    '<button class="btn block" onclick="startApp()">Mula Misi →</button>'+
+    (state.name ? '<button class="btn ghost block" onclick="goTo(\'reset\')">Reset semua kemajuan</button>' : '')+
+    '<div class="ver">🔖 VERSI: '+VERSION+'</div></div>';
+}
+function startApp(){ if(state.name){ state.path=["menu"]; resetUi(); saveState(); render(); } else { goTo("form"); } }
+
+function scrForm(){
+  return topBar("Daftar Masuk")+'<div class="card"><h2>Siapa anda?</h2>'+
+    '<label>Nama</label><input type="text" id="fname" autocomplete="off" placeholder="cth. Nur Aisyah">'+
+    '<label>Kelas</label><input type="text" id="fkelas" autocomplete="off" placeholder="cth. 1 Amanah">'+
+    '<div id="ferr" class="muted"></div>'+
+    '<button class="btn block" onclick="submitForm()">Sedia, Mula!</button>'+
+    '<div class="muted" style="margin-top:8px">Pemasa bermula selepas anda tekan butang ini.</div></div>';
+}
+function submitForm(){
+  var n=document.getElementById("fname").value.trim(), k=document.getElementById("fkelas").value.trim();
+  if(!n || !k){ document.getElementById("ferr").innerHTML='<span class="bad-t">Sila isi nama dan kelas.</span>'; return; }
+  state.name=n; state.kelas=k; state.startAt=Date.now(); state.endAt=0;
+  state.path=["menu"]; resetUi(); saveState(); render();
+}
+
+function modScore(id){
+  var m=MODS.filter(function(x){return x.id===id;})[0], st=state.mods[id], b=0;
+  for(var k in st.firstOk){ if(st.firstOk[k]) b++; }
+  return { bank:b, bankMax:m.bank.length, exit:st.exitScore, exitMax:m.exit.length };
+}
+function totals(){
+  var t=0,mx=0,done=0;
+  MODS.forEach(function(m){ var s=modScore(m.id); t+=s.bank+s.exit; mx+=s.bankMax+s.exitMax; if(state.mods[m.id].done) done++; });
+  return {t:t,mx:mx,done:done};
+}
+function fmtTime(ms){ var s=Math.max(0,Math.round(ms/1000)), m=Math.floor(s/60); return m+" min "+(s%60)+" saat"; }
+
+function scrMenu(){
+  var tt=totals();
+  var h='<div class="top"><div class="sp"><b>Menu Bab 12</b><div class="muted">'+esc(state.name)+' · '+esc(state.kelas)+'</div></div><button class="btn ghost small" onclick="goTo(\'welcome\')">⚙︎</button></div>';
+  h+='<div class="card"><div>Kemajuan: <b>'+tt.done+' / '+MODS.length+'</b> misi selesai</div><div class="bar"><div style="width:'+(tt.done/MODS.length*100)+'%"></div></div></div>';
+  h+='<div class="mods">';
+  MODS.forEach(function(m){
+    var st=state.mods[m.id], s=modScore(m.id);
+    var status = st.done ? '<span class="ok-t">✔ Selesai · '+(s.bank+s.exit)+'/'+(s.bankMax+s.exitMax)+'</span>' : (st.phase!=="intro" ? '<span class="muted">Sedang berjalan…</span>' : '<span class="muted">Belum mula</span>');
+    h+='<button class="mod'+(st.done?' done':'')+'" onclick="openMod(\''+m.id+'\')"><div class="t1">'+m.icon+' '+m.sp+' · '+m.title+'</div><div>'+status+'</div></button>';
+  });
+  h+='</div><button class="btn block" onclick="openSummary()">📋 Ringkasan Bab'+(tt.done===MODS.length?'':' (belum lengkap)')+'</button>';
+  return h;
+}
+function openMod(id){ state.cur=id; goTo("mod"); }
+function openSummary(){
+  if(totals().done===MODS.length && !state.endAt){ state.endAt=Date.now(); }
+  goTo("summary");
+}
+
+/* ---------- Skrin modul ---------- */
+function curMod(){ return MODS.filter(function(x){return x.id===state.cur;})[0]; }
+function phaseLabel(p){ return {intro:"Misi",diag:"Semakan Awal",note:"Nota Lengkap",wedo:"Latihan Berpandu",bank:"Latihan 4 Aras",exit:"Tiket Keluar",done:"Selesai"}[p]; }
+function scrMod(){
+  var m=curMod(), st=state.mods[m.id];
+  var order=["intro","diag","note","wedo","bank","exit","done"], pi=order.indexOf(st.phase);
+  var h=topBar(m.icon+" "+m.sp)+'<div class="muted">'+phaseLabel(st.phase)+'</div><div class="bar"><div style="width:'+(pi/(order.length-1)*100)+'%"></div></div>';
+  if(st.phase==="intro"){
+    h+='<div class="card"><h2>'+m.title+'</h2><div class="note"><b>Objektif:</b> '+m.objective+'</div>'+
+       '<ol><li>Semakan awal (2 soalan)</li><li>Baca nota lengkap</li><li>Latihan berpandu</li><li>Latihan 4 aras: Rendah, Sederhana, Tinggi, KBAT</li><li>Tiket keluar</li></ol>'+
+       '<div class="muted">Soalan yang salah akan diulang sehingga anda betul. Markah dikira daripada cubaan pertama.</div>'+
+       '<button class="btn block" onclick="setPhase(\'diag\')">Mula →</button></div>';
+  } else if(st.phase==="diag"){
+    h+=qCard(m.diag[st.di], "Semakan Awal "+(st.di+1)+"/"+m.diag.length, "diag");
+  } else if(st.phase==="note"){
+    h+='<div class="card"><h2>📘 Nota Lengkap: '+m.title+'</h2>'+m.note+'<button class="btn block" onclick="setPhase(\'wedo\')">Faham, Sedia untuk Latihan →</button></div>';
+  } else if(st.phase==="wedo"){
+    h+=qCard(m.wedo[st.wi], "Latihan Berpandu", "wedo");
+  } else if(st.phase==="bank"){
+    var qi=st.queue[0], q=m.bank[qi], left=st.queue.length;
+    h+=qCard(q, 'Baki '+left+' soalan', "bank");
+  } else if(st.phase==="exit"){
+    h+=qCard(m.exit[st.ei], "Tiket Keluar "+(st.ei+1)+"/"+m.exit.length, "exit");
+  } else {
+    var s=modScore(m.id);
+    h+='<div class="card" style="text-align:center"><div class="big">🏅</div><h2>Misi '+m.sp+' selesai!</h2>'+
+       '<div class="grid2"><div class="stat">Latihan 4 aras<br><b>'+s.bank+' / '+s.bankMax+'</b><div class="muted">betul cubaan pertama</div></div><div class="stat">Tiket keluar<br><b>'+s.exit+' / '+s.exitMax+'</b></div></div>'+
+       '<button class="btn block" onclick="goHome()">Kembali ke Menu Bab</button></div>';
+  }
+  return h;
+}
+function setPhase(p){ var st=state.mods[state.cur]; st.phase=p; resetUi(); saveState(); render(); }
+
+function qCard(q, label, phase){
+  var h='<div class="card"><div>'+(q.lvl?'<span class="chip lvl-'+q.lvl+'">'+q.lvl+'</span>':'')+'<span class="muted">'+label+'</span></div>';
+  h+='<div style="margin-top:8px">'+q.q+'</div>';
+  if(q.type==="mcq"){
+    q.opts.forEach(function(o,i){
+      var cls="opt";
+      if(ui.checked && (ui.ok || ui.tries>=2 || phase==="diag" || phase==="exit")){ if(i===q.ans) cls+=" right"; else if(i===ui.sel) cls+=" wrong"; }
+      else if(ui.checked && i===ui.sel && !ui.ok) cls+=" wrong";
+      else if(i===ui.sel) cls+=" sel";
+      h+='<button class="'+cls+'" '+(ui.checked?'disabled':'')+' onclick="pick('+i+')">'+String.fromCharCode(65+i)+'. '+o+'</button>';
+    });
+  } else {
+    h+='<input type="text" id="numin" inputmode="decimal" autocomplete="off" placeholder="Taip jawapan'+(q.unit?(" ("+q.unit+")"):"")+'" oninput="ui.input=this.value" '+(ui.checked?'disabled':'')+'>';
+  }
+  if(phase==="wedo" && !ui.checked && q.hint){
+    h+= ui.showHint ? '<div class="fb hint">💡 '+q.hint+'</div>' : '<button class="btn ghost small" onclick="ui.showHint=true;render()">💡 Bantuan</button>';
+  }
+  if(!ui.checked){
+    h+='<button class="btn block" onclick="check(\''+phase+'\')" '+(canCheck(q)?'':'')+'>Semak Jawapan</button>';
+  } else {
+    h+=feedback(q, phase);
+  }
+  return h+'</div>';
+}
+function pick(i){ if(ui.checked) return; ui.sel=i; render(); }
+
+function feedback(q, phase){
+  var h="";
+  var correctTxt = q.type==="mcq" ? q.opts[q.ans] : (q.ans+(q.unit?(" "+q.unit):""));
+  if(ui.ok){
+    h+='<div class="fb ok">✅ <b>Betul!</b>'+(q.expl?' '+q.expl:'')+'</div>';
+    h+='<button class="btn block" onclick="next(\''+phase+'\')">Teruskan →</button>';
+    return h;
+  }
+  var mis = (q.type==="mcq" && q.fb && q.fb[ui.sel]) ? q.fb[ui.sel] : "";
+  if(phase==="diag" || phase==="exit"){
+    h+='<div class="fb bad">❌ Jawapan betul: <b>'+correctTxt+'</b>.'+(mis?'<br>'+mis:'')+(q.expl?'<br>'+q.expl:'')+'</div>';
+    h+='<button class="btn block" onclick="next(\''+phase+'\')">Teruskan →</button>';
+    return h;
+  }
+  if(ui.tries<2){
+    h+='<div class="fb bad">❌ Belum tepat.'+(mis?'<br>'+mis:'')+'</div>';
+    if(q.hint) h+='<div class="fb hint">💡 '+q.hint+'</div>';
+    h+='<button class="btn block" onclick="retry()">Cuba Lagi</button>';
+  } else {
+    h+='<div class="fb bad">❌ Jawapan betul: <b>'+correctTxt+'</b>.'+(mis?'<br>'+mis:'')+(q.hint?'<br>💡 '+q.hint:'')+'</div>';
+    h+='<div class="muted">'+(phase==="bank"?'Soalan ini akan diulang di hujung latihan.':'')+'</div>';
+    h+='<button class="btn block" onclick="next(\''+phase+'\')">Teruskan →</button>';
+  }
+  return h;
+}
+function retry(){ ui.checked=false; ui.ok=null; ui.sel=null; ui.input=""; render(); }
+
+function check(phase){
+  var m=curMod(), st=state.mods[m.id], q;
+  if(phase==="diag") q=m.diag[st.di];
+  else if(phase==="wedo") q=m.wedo[st.wi];
+  else if(phase==="bank") q=m.bank[st.queue[0]];
+  else q=m.exit[st.ei];
+  var inp=document.getElementById("numin"); if(inp) ui.input=inp.value;
+  if(!canCheck(q)) return;
+  ui.tries++; ui.ok=isRight(q); ui.checked=true;
+  var phName={diag:"Semakan Awal",wedo:"Berpandu",bank:"Latihan",exit:"Tiket Keluar"}[phase];
+  logAnswer(m, phName+(ui.tries>1?" (cubaan "+ui.tries+")":""), q, givenText(q), ui.ok);
+  if(phase==="bank"){
+    var qi=st.queue[0];
+    if(!st.seen[qi]){ st.seen[qi]=true; st.firstOk[qi]=ui.ok; }
+  }
+  if(phase==="exit" && ui.ok){ st.exitScore++; }
+  saveState(); render();
+}
+
+/* Pengendali klik "Teruskan": semua peralihan fasa di sini, bukan di fungsi paparan */
+function next(phase){
+  var m=curMod(), st=state.mods[m.id];
+  if(phase==="diag"){
+    st.di++; if(st.di>=m.diag.length){ st.phase="note"; }
+  } else if(phase==="wedo"){
+    if(!ui.ok){ /* selepas 2 cubaan salah, tetap teruskan */ }
+    st.wi++; if(st.wi>=m.wedo.length){ st.phase="bank"; }
+  } else if(phase==="bank"){
+    var qi=st.queue.shift();
+    if(!ui.ok){ st.queue.push(qi); }
+    if(st.queue.length===0){ st.phase="exit"; }
+  } else if(phase==="exit"){
+    st.ei++; if(st.ei>=m.exit.length){ st.phase="done"; st.done=true; if(totals().done===MODS.length && !state.endAt) state.endAt=Date.now(); }
+  }
+  resetUi(); saveState(); render();
+}
+
+/* ---------- Ringkasan bab ---------- */
+function scrSummary(){
+  var tt=totals(), end = state.endAt || Date.now();
+  var h=topBar("Ringkasan Bab 12");
+  h+='<div class="card" style="text-align:center"><div class="muted">Misi Penganalisis Data · T1 Bab 12</div>'+
+     '<div class="big">'+esc(state.name)+'</div><div><b>'+esc(state.kelas)+'</b></div>'+
+     '<div class="grid2" style="margin-top:10px"><div class="stat">Jumlah markah<br><span class="big">'+tt.t+' / '+tt.mx+'</span><div class="muted">'+(tt.mx?Math.round(tt.t/tt.mx*100):0)+'%</div></div>'+
+     '<div class="stat">Masa diambil<br><b>'+fmtTime(end-state.startAt)+'</b><div class="muted">'+(state.endAt?'lengkap':'masih berjalan')+'</div></div></div>'+
+     '<div style="margin-top:8px">Misi selesai: <b>'+tt.done+' / '+MODS.length+'</b></div>'+
+     '<div class="muted">'+new Date().toLocaleString("ms-MY")+' · 🔖 '+VERSION+'</div></div>';
+  h+='<div class="card"><h3>Markah setiap misi</h3>'+table(["SP","Latihan","Tiket","Status"], MODS.map(function(m){ var s=modScore(m.id); return [m.sp, s.bank+"/"+s.bankMax, s.exit+"/"+s.exitMax, state.mods[m.id].done?'<span class="ok-t">✔</span>':'—']; }))+
+     '<div class="muted">Markah latihan = soalan betul pada cubaan pertama.</div></div>';
+  h+='<div class="card log"><h3>Senarai semua jawapan</h3>';
+  if(!state.log.length) h+='<div class="muted">Belum ada jawapan.</div>';
+  state.log.forEach(function(r,i){
+    h+='<div class="row"><b>'+(i+1)+'.</b> <span class="chip">'+r.m+'</span>'+(r.lvl?'<span class="chip lvl-'+r.lvl+'">'+r.lvl+'</span>':'')+'<span class="muted">'+esc(r.p)+'</span><br>'+esc(r.q)+'<br>Jawapan anda: <b>'+esc(r.a)+'</b> '+(r.ok?'<span class="ok-t">✔ Betul</span>':'<span class="bad-t">✘ Salah</span> · Betul: <b>'+esc(r.c)+'</b>')+'</div>';
+  });
+  h+='</div><div class="muted" style="text-align:center">Ambil tangkap layar skrin ini dan hantar kepada guru anda.</div>';
+  return h;
+}
+
+/* ---------- Reset (skrin pengesahan dalaman, bukan confirm()) ---------- */
+function scrReset(){
+  return topBar("Reset")+'<div class="card" style="background:#fff6dc"><h2>⚠️ Padam semua kemajuan?</h2><p>Nama, markah, masa dan semua jawapan akan dipadam. Tindakan ini tidak boleh dibatalkan.</p>'+
+    '<button class="btn danger block" onclick="doReset()">Ya, padam semua</button><button class="btn ghost block" onclick="goBack()">Batal</button></div>';
+}
+function doReset(){
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  state=freshState(); MODS.forEach(function(m){ state.mods[m.id]=freshMod(m); });
+  resetUi(); saveState(); render();
+}
+
+loadState();
+render();
+</script>
+</body>
+</html>
