@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 12: Sukatan Kecenderungan Memusat · Matematik T2</title><meta name="description" content="Nota, latihan dan kuiz Matematik Tingkatan 2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683;--warn:#FFF3E0}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA;--warn:#3A2E1A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 56px}
+nav.crumb{font-size:14px;margin-bottom:12px}
+a{color:var(--navy)}
+h1{margin:4px 0 4px;font-size:clamp(26px,6vw,38px);line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:32px 0 10px;font-size:21px;color:var(--navy)}
+h3{margin:20px 0 6px;font-size:17px}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero{background:var(--panel);border-radius:22px;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:96px}
+a.card:hover{border-color:var(--navy)}
+a.card b{font-size:17px;line-height:1.3}
+a.card span{font-size:14px;color:var(--muted)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:var(--navy);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.btn.alt{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 12px;margin:10px 0}
+.note p{margin:8px 0}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--panel);color:var(--navy);margin-left:6px;white-space:nowrap}
+ol.lat{padding-left:22px}
+ol.lat li{margin:12px 0}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--navy);font-weight:600;min-height:32px;display:inline-block}
+.jaw{background:var(--panel);border-radius:10px;padding:8px 12px;margin-top:6px}
+.klist a.card{min-height:0}
+.warn{background:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.mingguini{background:var(--card);border:2px solid var(--navy);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mingguini h2{margin-top:0}
+.soon{color:var(--muted);font-style:italic}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{
+ body{background:#fff;color:#000;font-size:12pt}
+ nav.crumb,.row,.noprint,footer a{display:none!important}
+ .jaw{display:block}
+ details{display:block}
+ details>summary{display:none}
+ details:not([open])>*:not(summary){display:block}
+ .note{border:1px solid #999}
+ a{color:#000;text-decoration:none}
+}
+</style></head><body><div class="wrap"><nav class="crumb"><a href="../../">Utama</a> › <a href="../">Tingkatan 2</a> › <a href="./">Matematik</a></nav><h1>Bab 12: Sukatan Kecenderungan Memusat</h1><p class="sub">Matematik Tingkatan 2 · Nota, latihan dan kuiz</p><div class="row noprint"><button class="btn alt" onclick="window.print()">Cetak / simpan PDF</button></div><h2>Selepas bab ini, anda boleh</h2><ul><li>menentukan mod, min dan median bagi data tak terkumpul dan kesan perubahan data (SP 12.1.1, 12.1.2)</li><li>membina jadual kekerapan, menentukan kelas mod dan min data terkumpul (SP 12.1.3, 12.1.4)</li><li>memilih sukatan kecenderungan memusat yang sesuai dan menyelesaikan masalah (SP 12.1.5–12.1.7)</li></ul><h2>Slaid</h2><div class="row"><a class="btn" href="slaid-bab12.html">Buka slaid</a></div><p class="sub">Slaid penuh skrin. Guna anak panah atau leret jari. Boleh dicetak.</p><h2>Nota</h2><div class="note"><h3>12.1 Data Tak Terkumpul</h3><p><b>Mod</b>: nilai yang paling kerap. <b>Median</b>: nilai tengah selepas data disusun. <b>Min</b>: jumlah nilai ÷ bilangan nilai.</p><p>Bilangan data genap: median = purata dua nilai tengah.</p><p><b>Contoh 1.</b> 3, 7, 5, 7, 8: susun 3, 5, 7, 7, 8. Mod = 7, median = 7, min = 30 ÷ 5 = <b>6</b>.</p><p><b>Kesan perubahan:</b> jika setiap nilai ditambah k, mod, median dan min semuanya bertambah k. Jika didarab k, semuanya didarab k.</p><p><b>Nilai ekstrem</b> menjejaskan min dengan ketara, tetapi kurang menjejaskan median dan mod.</p></div><div class="note"><h3>12.2 Data Terkumpul</h3><p>Data dibahagikan kepada <b>selang kelas</b>, cth. 1–10, 11–20. <b>Titik tengah</b> = (had bawah + had atas) ÷ 2.</p><p><b>Kelas mod</b> = selang kelas yang mempunyai kekerapan tertinggi.</p><p><b>Min data terkumpul</b> = Σ(kekerapan × titik tengah) ÷ Σ kekerapan.</p><p><b>Memilih sukatan:</b> min sesuai jika tiada nilai ekstrem; median jika ada nilai ekstrem; mod bagi data kategori (cth. saiz kasut paling laris).</p></div><h2>Latihan</h2><p class="sub">Cuba dahulu di kertas. Tekan "Semak jawapan" selepas anda cuba.</p><ol class="lat"><li>Cari mod, median dan min bagi 3, 7, 5, 7, 8.<span class="chip">12.1.1 / TP1</span><details><summary>Semak jawapan</summary><div class="jaw">Mod 7, median 7, min 6</div></details></li><li>Cari median bagi 12, 15, 9, 20, 11, 18.<span class="chip">12.1.1 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">Susun 9, 11, 12, 15, 18, 20 → (12 + 15) ÷ 2 = 13.5</div></details></li><li>Min bagi 5 nombor ialah 8. Empat nombor ialah 6, 9, 7 dan 10. Cari nombor kelima.<span class="chip">12.1.1 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">40 − 32 = 8</div></details></li><li>Setiap nilai dalam set 4, 6, 8 ditambah 5. Nyatakan min baharu.<span class="chip">12.1.2 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">Min asal 6 → min baharu 11</div></details></li><li>Jadual: markah 1–10 (f = 3), 11–20 (f = 5), 21–30 (f = 2). Nyatakan kelas mod.<span class="chip">12.1.4 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">11–20</div></details></li><li>Hitung min bagi data terkumpul di atas (titik tengah 5.5, 15.5, 25.5).<span class="chip">12.1.4 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">(16.5 + 77.5 + 51) ÷ 10 = 14.5</div></details></li><li>Gaji 5 pekerja: RM2000, RM2200, RM2100, RM2300, RM9000. Sukatan manakah paling sesuai mewakili gaji biasa? Mengapa?<span class="chip">12.1.5 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">Median RM2200; nilai ekstrem RM9000 menaikkan min kepada RM3520.</div></details></li><li>Kedai kasut ingin mengetahui saiz yang perlu ditambah stok. Sukatan manakah sesuai?<span class="chip">12.1.5 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Mod, kerana saiz kasut ialah data kategori dan mod menunjukkan saiz paling laris.</div></details></li><li><b>(KBAT)</b> Min markah 30 murid kelas A ialah 60 dan min 20 murid kelas B ialah 70. Hitung min gabungan.<span class="chip">12.1.7 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">(1800 + 1400) ÷ 50 = 64</div></details></li><li><b>(KBAT)</b> Bina satu set 5 nombor bulat positif dengan mod 4, median 5 dan min 6.<span class="chip">12.1.7 / TP6</span><details><summary>Semak jawapan</summary><div class="jaw">Contoh: 4, 4, 5, 8, 9 (jumlah 30)</div></details></li></ol><h2>Kuiz</h2><div class="warn">Kuiz ini <b>direkod</b> untuk guru dan perlu log masuk dengan akaun DELIMa (e-mel murid). Jika tidak dapat log masuk, buat Latihan di atas dahulu dan maklumkan guru.</div><div class="grid klist" style="margin-top:12px"><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLScxF7vUi5mMgQGFC2skQs5oxhsiI-Tosu-XXrbO4lx9YK4hKw/viewform" target="_blank" rel="noopener"><b>Kuiz 12.1A: Mod, Median dan Min Data Tak Terkumpul</b><span>SP 12.1.1, 12.1.2, 12.1.5</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSdaZXgfWC383P35KagPpnPtLX1q8mD5fnzL4Bd-eac9E7EEwA/viewform" target="_blank" rel="noopener"><b>Kuiz 12.1B: Data Terkumpul dan Pemilihan Sukatan</b><span>SP 12.1.3–12.1.7</span></a></div><div class="row noprint" style="margin-top:28px"><a class="btn alt" href="bab11.html">‹ Bab 11</a><a class="btn alt" href="bab13.html">Bab 13 ›</a></div><footer>Disediakan oleh: JURULETIH · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu · Kemas kini: 13.11.2026</footer></div></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 1: Fungsi dan Persamaan Kuadratik dalam Satu Pemboleh Ubah · Matematik T4</title><meta name="description" content="Nota, latihan dan kuiz Matematik Tingkatan 4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683;--warn:#FFF3E0}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA;--warn:#3A2E1A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 56px}
+nav.crumb{font-size:14px;margin-bottom:12px}
+a{color:var(--navy)}
+h1{margin:4px 0 4px;font-size:clamp(26px,6vw,38px);line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:32px 0 10px;font-size:21px;color:var(--navy)}
+h3{margin:20px 0 6px;font-size:17px}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero{background:var(--panel);border-radius:22px;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:96px}
+a.card:hover{border-color:var(--navy)}
+a.card b{font-size:17px;line-height:1.3}
+a.card span{font-size:14px;color:var(--muted)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:var(--navy);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.btn.alt{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 12px;margin:10px 0}
+.note p{margin:8px 0}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--panel);color:var(--navy);margin-left:6px;white-space:nowrap}
+ol.lat{padding-left:22px}
+ol.lat li{margin:12px 0}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--navy);font-weight:600;min-height:32px;display:inline-block}
+.jaw{background:var(--panel);border-radius:10px;padding:8px 12px;margin-top:6px}
+.klist a.card{min-height:0}
+.warn{background:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.mingguini{background:var(--card);border:2px solid var(--navy);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mingguini h2{margin-top:0}
+.soon{color:var(--muted);font-style:italic}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{
+ body{background:#fff;color:#000;font-size:12pt}
+ nav.crumb,.row,.noprint,footer a{display:none!important}
+ .jaw{display:block}
+ details{display:block}
+ details>summary{display:none}
+ details:not([open])>*:not(summary){display:block}
+ .note{border:1px solid #999}
+ a{color:#000;text-decoration:none}
+}
+</style></head><body><div class="wrap"><nav class="crumb"><a href="../../">Utama</a> › <a href="../">Tingkatan 4</a> › <a href="./">Matematik</a></nav><h1>Bab 1: Fungsi dan Persamaan Kuadratik dalam Satu Pemboleh Ubah</h1><p class="sub">Matematik Tingkatan 4 · Nota, latihan dan kuiz</p><div class="row noprint"><button class="btn alt" onclick="window.print()">Cetak / simpan PDF</button></div><h2>Selepas bab ini, anda boleh</h2><ul><li>mengenal pasti ungkapan kuadratik dan ciri-ciri fungsi kuadratik (SP 1.1.1, 1.1.2)</li><li>menyiasat kesan perubahan nilai a, b dan c terhadap graf f(x) = ax² + bx + c serta membentuk fungsi kuadratik (SP 1.1.3, 1.1.4)</li><li>menerangkan maksud punca, menentukan punca secara pemfaktoran, melakar graf dan menyelesaikan masalah (SP 1.1.5–1.1.8)</li></ul><h2>Slaid</h2><div class="row"><a class="btn" href="slaid-bab01.html">Buka slaid</a></div><p class="sub">Slaid penuh skrin. Guna anak panah atau leret jari. Boleh dicetak.</p><h2>Nota</h2><div class="note"><h3>1.1 Fungsi Kuadratik</h3><p><b>Ungkapan kuadratik</b> dalam satu pemboleh ubah: <b>ax² + bx + c</b>, dengan a ≠ 0 dan kuasa tertinggi pemboleh ubah ialah 2 (kuasa mesti nombor bulat). b dan c boleh sifar, cth. 3x², x² − 4, 2x² + 5x.</p><p><b>Fungsi kuadratik</b> f(x) = ax² + bx + c ialah hubungan <b>banyak kepada satu</b> (dua nilai x boleh memberi nilai f(x) yang sama). Ujian garis mencancang: setiap garis mencancang memotong graf sekali sahaja.</p><p>Ciri graf: berbentuk parabola; a &gt; 0 → bentuk ∪ dengan <b>titik minimum</b>; a &lt; 0 → bentuk ∩ dengan <b>titik maksimum</b>; paksi simetri selari paksi-y, iaitu <b>x = −b/(2a)</b>.</p><p>Kesan a, b, c: |a| bertambah → graf lebih sempit; tanda a menentukan arah bukaan; c ialah <b>pintasan-y</b>; perubahan b menganjakkan paksi simetri.</p><p><b>Contoh 1.</b> f(x) = x² − 6x + 5: a = 1, b = −6, c = 5. Paksi simetri x = 3. f(3) = −4, jadi titik minimum (3, −4). Pintasan-y = 5.</p></div><div class="note"><h3>1.2 Persamaan Kuadratik</h3><p>Bentuk am persamaan kuadratik: <b>ax² + bx + c = 0</b>.</p><p><b>Punca</b> ialah nilai x yang memuaskan persamaan. Pada graf y = ax² + bx + c, punca ialah <b>pintasan-x</b> (titik graf memotong paksi-x).</p><p>Kaedah pemfaktoran: susun kepada bentuk am → faktorkan → setiap faktor = 0.</p><p><b>Contoh 2.</b> 2x² + x − 6 = 0 → (2x − 3)(x + 2) = 0 → x = 3/2 atau x = −2.</p><p><b>Awas miskonsepsi:</b> x² = 9x → jangan bahagi dengan x (punca x = 0 hilang). Tulis x² − 9x = 0 → x(x − 9) = 0 → x = 0 atau x = 9.</p><p>Lakaran graf: tentukan bentuk (a), pintasan-y (c), punca (pintasan-x) dan titik minimum/maksimum. Jika tiada punca nyata (cth. y = x² + 4), titik minimum terletak pada paksi-y.</p></div><h2>Latihan</h2><p class="sub">Cuba dahulu di kertas. Tekan "Semak jawapan" selepas anda cuba.</p><ol class="lat"><li>Nyatakan sama ada setiap ungkapan berikut ialah ungkapan kuadratik dalam satu pemboleh ubah: (a) 4x² − 1 (b) x³ + 2x (c) 2x² + √x<span class="chip">1.1.1 / TP1</span><details><summary>Semak jawapan</summary><div class="jaw">(a) ya (b) bukan (c) bukan</div></details></li><li>Bagi f(x) = −2x² + 8x − 3, nyatakan nilai a, b, c dan sama ada graf mempunyai titik maksimum atau minimum.<span class="chip">1.1.2 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">a = −2, b = 8, c = −3; titik maksimum</div></details></li><li>Cari paksi simetri dan titik minimum bagi f(x) = x² − 6x + 5.<span class="chip">1.1.3 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">x = 3; (3, −4)</div></details></li><li>Segi empat tepat mempunyai panjang (x + 3) cm dan lebar x cm. Luasnya 40 cm². Bentukkan persamaan kuadratik dalam bentuk am.<span class="chip">1.1.4 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">x² + 3x − 40 = 0</div></details></li><li>Selesaikan x² − 5x + 6 = 0.<span class="chip">1.1.6 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">x = 2 atau x = 3</div></details></li><li>Selesaikan 2x² + x − 6 = 0.<span class="chip">1.1.6 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">x = 3/2 atau x = −2</div></details></li><li>Lakarkan graf y = (x − 1)(x − 5). Tandakan pintasan-x, pintasan-y dan titik minimum.<span class="chip">1.1.7 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Pintasan-x 1 dan 5; pintasan-y 5; titik minimum (3, −4)</div></details></li><li>Hasil darab dua nombor ganjil berturutan ialah 143. Cari kedua-dua nombor itu (positif).<span class="chip">1.1.8 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">x(x + 2) = 143 → x = 11; 11 dan 13</div></details></li><li><b>(KBAT)</b> Tinggi bola, h = 20t − 5t² meter, t dalam saat. Bilakah bola kembali ke tanah? Berapakah tinggi maksimum?<span class="chip">1.1.8 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">t = 4 s; maksimum pada t = 2, h = 20 m</div></details></li><li><b>(KBAT)</b> Pagar 20 m digunakan untuk tiga sisi kawasan segi empat tepat di tepi dinding. Jika lebar x m (dua sisi), tunjukkan luas A = x(20 − 2x) dan cari luas maksimum.<span class="chip">1.1.8 / TP6</span><details><summary>Semak jawapan</summary><div class="jaw">Maksimum pada x = 5: A = 50 m²</div></details></li></ol><h2>Kuiz</h2><div class="warn">Kuiz ini <b>direkod</b> untuk guru dan perlu log masuk dengan akaun DELIMa (e-mel murid). Jika tidak dapat log masuk, buat Latihan di atas dahulu dan maklumkan guru.</div><div class="grid klist" style="margin-top:12px"><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSdpCqAyVfr5f-lXyiIFtr_u47uSYBVmoLlTQFv_D0cH811wQA/viewform" target="_blank" rel="noopener"><b>Kuiz 1.1A: Fungsi Kuadratik</b><span>SP 1.1.1–1.1.4</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSf9I7JM77prg5_vZnievopl4nvUJzTiH5fUlrr2Sp71voFuCg/viewform" target="_blank" rel="noopener"><b>Kuiz 1.1B: Persamaan Kuadratik</b><span>SP 1.1.5–1.1.8</span></a></div><div class="row noprint" style="margin-top:28px"><a class="btn alt" href="bab02.html">Bab 2 ›</a></div><footer>Disediakan oleh: JURULETIH · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu · Kemas kini: 13.11.2026</footer></div></body></html>

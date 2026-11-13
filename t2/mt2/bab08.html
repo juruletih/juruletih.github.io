@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 8: Graf Fungsi · Matematik T2</title><meta name="description" content="Nota, latihan dan kuiz Matematik Tingkatan 2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683;--warn:#FFF3E0}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA;--warn:#3A2E1A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 56px}
+nav.crumb{font-size:14px;margin-bottom:12px}
+a{color:var(--navy)}
+h1{margin:4px 0 4px;font-size:clamp(26px,6vw,38px);line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:32px 0 10px;font-size:21px;color:var(--navy)}
+h3{margin:20px 0 6px;font-size:17px}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero{background:var(--panel);border-radius:22px;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:96px}
+a.card:hover{border-color:var(--navy)}
+a.card b{font-size:17px;line-height:1.3}
+a.card span{font-size:14px;color:var(--muted)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:var(--navy);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.btn.alt{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 12px;margin:10px 0}
+.note p{margin:8px 0}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--panel);color:var(--navy);margin-left:6px;white-space:nowrap}
+ol.lat{padding-left:22px}
+ol.lat li{margin:12px 0}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--navy);font-weight:600;min-height:32px;display:inline-block}
+.jaw{background:var(--panel);border-radius:10px;padding:8px 12px;margin-top:6px}
+.klist a.card{min-height:0}
+.warn{background:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.mingguini{background:var(--card);border:2px solid var(--navy);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mingguini h2{margin-top:0}
+.soon{color:var(--muted);font-style:italic}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{
+ body{background:#fff;color:#000;font-size:12pt}
+ nav.crumb,.row,.noprint,footer a{display:none!important}
+ .jaw{display:block}
+ details{display:block}
+ details>summary{display:none}
+ details:not([open])>*:not(summary){display:block}
+ .note{border:1px solid #999}
+ a{color:#000;text-decoration:none}
+}
+</style></head><body><div class="wrap"><nav class="crumb"><a href="../../">Utama</a> › <a href="../">Tingkatan 2</a> › <a href="./">Matematik</a></nav><h1>Bab 8: Graf Fungsi</h1><p class="sub">Matematik Tingkatan 2 · Nota, latihan dan kuiz</p><div class="row noprint"><button class="btn alt" onclick="window.print()">Cetak / simpan PDF</button></div><h2>Selepas bab ini, anda boleh</h2><ul><li>menerangkan maksud fungsi dan mengenal pasti fungsi daripada pasangan tertib, jadual, graf dan persamaan (SP 8.1.1, 8.1.2)</li><li>membina jadual nilai dan melukis graf fungsi linear dan bukan linear (SP 8.2.1)</li><li>mentafsir graf fungsi dan menyelesaikan masalah, termasuk titik persilangan dua graf (SP 8.2.2, 8.2.3)</li></ul><h2>Slaid</h2><div class="row"><a class="btn" href="slaid-bab08.html">Buka slaid</a></div><p class="sub">Slaid penuh skrin. Guna anak panah atau leret jari. Boleh dicetak.</p><h2>Nota</h2><div class="note"><h3>8.1 Fungsi</h3><p><b>Fungsi</b> ialah hubungan yang memetakan <u>setiap</u> objek (x) kepada <u>satu sahaja</u> imej (y).</p><p>Jenis fungsi: <b>satu kepada satu</b> (cth. y = 2x) dan <b>banyak kepada satu</b> (cth. y = x²: 2 dan −2 kedua-duanya memberi 4). Hubungan <b>satu kepada banyak</b> bukan fungsi.</p><p>Tatatanda: <b>f(x) = 3x − 2</b> bermaksud f memetakan x kepada 3x − 2. f(4) = 3(4) − 2 = 10.</p><p><b>Ujian garis mencancang:</b> jika satu garis mencancang memotong graf lebih daripada sekali, graf itu bukan fungsi.</p></div><div class="note"><h3>8.2 Graf Fungsi</h3><p>Langkah: (1) bina jadual nilai, (2) pilih skala mengikut soalan, (3) plot titik, (4) sambung dengan garis lurus (linear) atau lengkung licin (bukan linear).</p><p><table border="1" cellpadding="6" style="border-collapse:collapse"><tr><th>Fungsi</th><th>Bentuk graf</th></tr><tr><td>y = ax + b</td><td>Garis lurus</td></tr><tr><td>y = ax², a &gt; 0</td><td>Lengkung bentuk ∪ (minimum)</td></tr><tr><td>y = ax², a &lt; 0</td><td>Lengkung bentuk ∩ (maksimum)</td></tr><tr><td>y = ax³</td><td>Lengkung kubik</td></tr><tr><td>y = a/x</td><td>Hiperbola (dua cabang, tidak menyentuh paksi)</td></tr></table></p><p><b>Contoh.</b> y = x² − 4: x = −3, −2, 0, 2, 3 → y = 5, 0, −4, 0, 5.</p><p><b>Menyelesaikan persamaan secara graf:</b> penyelesaian f(x) = g(x) ialah nilai x pada titik persilangan graf y = f(x) dan y = g(x).</p></div><h2>Latihan</h2><p class="sub">Cuba dahulu di kertas. Tekan "Semak jawapan" selepas anda cuba.</p><ol class="lat"><li>Terangkan mengapa {(1, 3), (2, 5), (1, 7)} bukan fungsi.<span class="chip">8.1.1 / TP1</span><details><summary>Semak jawapan</summary><div class="jaw">Objek 1 mempunyai dua imej (3 dan 7).</div></details></li><li>Diberi f(x) = 3x − 2. Cari f(4) dan f(−1).<span class="chip">8.1.2 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">f(4) = 10; f(−1) = −5</div></details></li><li>Nyatakan jenis fungsi bagi y = x² dan beri sebab.<span class="chip">8.1.2 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">Banyak kepada satu; cth. x = 2 dan x = −2 memberi y = 4.</div></details></li><li>Lengkapkan jadual nilai bagi y = x² − 4 untuk x = −3, −2, −1, 0, 1, 2, 3.<span class="chip">8.2.1 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">5, 0, −3, −4, −3, 0, 5</div></details></li><li>Diberi f(x) = 3x − 2 dan f(k) = 13. Cari k.<span class="chip">8.1.2 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">k = 5</div></details></li><li>Nyatakan bentuk graf bagi y = −2x² + 1 dan sama ada ia mempunyai titik maksimum atau minimum.<span class="chip">8.2.2 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Lengkung bentuk ∩; titik maksimum (0, 1).</div></details></li><li>Tambang teksi T = 2k + 3 (RM) bagi k km. Tafsir kecerunan dan pintasan-y graf ini.<span class="chip">8.2.2 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Kecerunan 2: RM2 setiap km. Pintasan 3: bayaran permulaan RM3.</div></details></li><li>Graf y = x² − 4 memotong paksi-x di mana?<span class="chip">8.2.2 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">x = −2 dan x = 2</div></details></li><li><b>(KBAT)</b> Selesaikan x² − 4 = x + 2 menggunakan titik persilangan graf y = x² − 4 dan y = x + 2.<span class="chip">8.2.3 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">Bersilang di x = −2 dan x = 3</div></details></li><li><b>(KBAT)</b> Syarikat A: kos C = 50 + 10n; Syarikat B: C = 20n. Bilakah kedua-dua kos sama, dan syarikat mana lebih murah bagi 8 jam?<span class="chip">8.2.3 / TP6</span><details><summary>Semak jawapan</summary><div class="jaw">Sama pada n = 5 (RM100). Bagi 8 jam: A RM130, B RM160 → A lebih murah.</div></details></li></ol><h2>Kuiz</h2><div class="warn">Kuiz ini <b>direkod</b> untuk guru dan perlu log masuk dengan akaun DELIMa (e-mel murid). Jika tidak dapat log masuk, buat Latihan di atas dahulu dan maklumkan guru.</div><div class="grid klist" style="margin-top:12px"><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLScGU_Wed8DJi9FCE5ZBy0kP2IfGcVxpeZEj18y8RcB7r1HkdQ/viewform" target="_blank" rel="noopener"><b>Kuiz 8.1: Fungsi</b><span>SP 8.1.1, 8.1.2</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSehikIFrFxnmzWRawcZjaME_3DHt8mVDalpginnO16luFHLxw/viewform" target="_blank" rel="noopener"><b>Kuiz 8.2: Graf Fungsi</b><span>SP 8.2.1–8.2.3</span></a></div><div class="row noprint" style="margin-top:28px"><a class="btn alt" href="bab07.html">‹ Bab 7</a><a class="btn alt" href="bab09.html">Bab 9 ›</a></div><footer>Disediakan oleh: JURULETIH · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu · Kemas kini: 13.11.2026</footer></div></body></html>

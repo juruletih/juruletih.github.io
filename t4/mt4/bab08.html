@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 8: Sukatan Serakan Data Tak Terkumpul · Matematik T4</title><meta name="description" content="Nota, latihan dan kuiz Matematik Tingkatan 4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683;--warn:#FFF3E0}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA;--warn:#3A2E1A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 56px}
+nav.crumb{font-size:14px;margin-bottom:12px}
+a{color:var(--navy)}
+h1{margin:4px 0 4px;font-size:clamp(26px,6vw,38px);line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:32px 0 10px;font-size:21px;color:var(--navy)}
+h3{margin:20px 0 6px;font-size:17px}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero{background:var(--panel);border-radius:22px;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:96px}
+a.card:hover{border-color:var(--navy)}
+a.card b{font-size:17px;line-height:1.3}
+a.card span{font-size:14px;color:var(--muted)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:var(--navy);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.btn.alt{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 12px;margin:10px 0}
+.note p{margin:8px 0}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--panel);color:var(--navy);margin-left:6px;white-space:nowrap}
+ol.lat{padding-left:22px}
+ol.lat li{margin:12px 0}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--navy);font-weight:600;min-height:32px;display:inline-block}
+.jaw{background:var(--panel);border-radius:10px;padding:8px 12px;margin-top:6px}
+.klist a.card{min-height:0}
+.warn{background:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.mingguini{background:var(--card);border:2px solid var(--navy);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mingguini h2{margin-top:0}
+.soon{color:var(--muted);font-style:italic}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{
+ body{background:#fff;color:#000;font-size:12pt}
+ nav.crumb,.row,.noprint,footer a{display:none!important}
+ .jaw{display:block}
+ details{display:block}
+ details>summary{display:none}
+ details:not([open])>*:not(summary){display:block}
+ .note{border:1px solid #999}
+ a{color:#000;text-decoration:none}
+}
+</style></head><body><div class="wrap"><nav class="crumb"><a href="../../">Utama</a> › <a href="../">Tingkatan 4</a> › <a href="./">Matematik</a></nav><h1>Bab 8: Sukatan Serakan Data Tak Terkumpul</h1><p class="sub">Matematik Tingkatan 4 · Nota, latihan dan kuiz</p><div class="row noprint"><button class="btn alt" onclick="window.print()">Cetak / simpan PDF</button></div><h2>Selepas bab ini, anda boleh</h2><ul><li>menerangkan maksud serakan serta membanding dan mentafsir serakan dua set data daripada plot batang-dan-daun dan plot titik (SP 8.1.1, 8.1.2)</li><li>menentukan julat, julat antara kuartil, varians dan sisihan piawai serta membina dan mentafsir plot kotak (SP 8.2.1–8.2.3)</li><li>menentukan kesan perubahan data terhadap serakan, membanding set data dan menyelesaikan masalah (SP 8.2.4–8.2.6)</li></ul><h2>Slaid</h2><div class="row"><a class="btn" href="slaid-bab08.html">Buka slaid</a></div><p class="sub">Slaid penuh skrin. Guna anak panah atau leret jari. Boleh dicetak.</p><h2>Nota</h2><div class="note"><h3>8.1 Serakan</h3><p><b>Serakan</b> ialah ukuran sejauh mana data tersebar. Data yang berkelompok rapat mempunyai serakan kecil (lebih konsisten).</p><p><b>Soalan statistik</b> ialah soalan yang dijawab dengan mengumpul data yang berbeza-beza, cth. "Berapakah masa yang diambil murid Tingkatan 4 untuk ke sekolah?"</p><p>Plot titik dan plot batang-dan-daun membantu membandingkan serakan. Dua set data boleh mempunyai min yang sama tetapi serakan berbeza.</p><p><b>Pencilan</b> ialah nilai yang jauh berbeza daripada nilai lain dalam set data.</p></div><div class="note"><h3>8.2 Sukatan Serakan</h3><p><b>Julat</b> = nilai terbesar − nilai terkecil.</p><p><b>Kuartil</b>: susun data menaik. Q₁ = nilai pada kedudukan ¼(n + 1), Q₃ = nilai pada kedudukan ¾(n + 1). <b>Julat antara kuartil</b> = Q₃ − Q₁.</p><p><b>Varians</b> σ² = Σx²/N − x̄² atau Σ(x − x̄)²/N. <b>Sisihan piawai</b> σ = √varians.</p><p><b>Plot kotak</b> menunjukkan nilai minimum, Q₁, median, Q₃ dan nilai maksimum.</p><p>Kesan perubahan data: tambah/tolak k pada setiap data → julat, julat antara kuartil, varians dan sisihan piawai <u>tidak berubah</u>. Darab setiap data dengan k → julat dan σ didarab k, varians didarab k².</p><p>Julat dan varians mudah dipengaruhi pencilan; julat antara kuartil kurang dipengaruhi.</p><p><b>Contoh.</b> Data 2, 4, 6, 8: x̄ = 5, varians = (9 + 1 + 1 + 9)/4 = 5, σ = √5 ≈ 2.236.</p></div><h2>Latihan</h2><p class="sub">Cuba dahulu di kertas. Tekan "Semak jawapan" selepas anda cuba.</p><ol class="lat"><li>Terangkan maksud serakan dan beri satu contoh soalan statistik.<span class="chip">8.1.1 / TP1</span><details><summary>Semak jawapan</summary><div class="jaw">Ukuran sejauh mana data tersebar; cth. masa ke sekolah murid Tingkatan 4</div></details></li><li>Plot batang-dan-daun: 1 | 2 5 8, 2 | 0 3 3 7, 3 | 1. Cari julat.<span class="chip">8.1.2 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">31 − 12 = 19</div></details></li><li>Skor memanah P: 8, 9, 8, 9, 8; Q: 10, 6, 10, 7, 9. Bandingkan min dan julat. Pemain manakah lebih konsisten?<span class="chip">8.1.2 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">Min kedua-dua 8.4; julat P 1, Q 4; P lebih konsisten</div></details></li><li>Data: 3, 5, 7, 8, 10, 12, 15. Cari julat dan julat antara kuartil.<span class="chip">8.2.1 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">Julat 12; Q₁ = 5, Q₃ = 12, JAK = 7</div></details></li><li>Hitung varians dan sisihan piawai bagi 2, 4, 6, 8.<span class="chip">8.2.1 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">Varians 5; σ ≈ 2.236</div></details></li><li>Diberi Σx = 60, Σx² = 400, N = 10. Hitung varians dan sisihan piawai.<span class="chip">8.2.1 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Varians 4; σ = 2</div></details></li><li>Bina plot kotak bagi: minimum 20, Q₁ 35, median 50, Q₃ 60, maksimum 90. Nyatakan julat antara kuartil.<span class="chip">8.2.3 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">JAK = 25</div></details></li><li>Setiap data dalam satu set ditambah 5. Apakah kesan terhadap min dan sisihan piawai?<span class="chip">8.2.4 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">Min bertambah 5; sisihan piawai tidak berubah</div></details></li><li><b>(KBAT)</b> Data 4, 5, 5, 6, 30. Sukatan serakan manakah paling sesuai? Terangkan.<span class="chip">8.2.2 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">Julat antara kuartil, kerana 30 ialah pencilan</div></details></li><li><b>(KBAT)</b> Min lima nombor ialah 8 dan variansnya 4. Nombor 8 ditambah ke dalam set itu. Cari varians baharu.<span class="chip">8.2.6 / TP6</span><details><summary>Semak jawapan</summary><div class="jaw">Σx = 48, Σx² = 404, N = 6 → 404/6 − 64 = 10/3 ≈ 3.33</div></details></li></ol><h2>Kuiz</h2><div class="warn">Kuiz ini <b>direkod</b> untuk guru dan perlu log masuk dengan akaun DELIMa (e-mel murid). Jika tidak dapat log masuk, buat Latihan di atas dahulu dan maklumkan guru.</div><div class="grid klist" style="margin-top:12px"><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSfsPGj6HZB9cCTRk4T0fopgGULqJp5WbCkN6JKX8LhjBSofJg/viewform" target="_blank" rel="noopener"><b>Kuiz 8.1: Serakan</b><span>SP 8.1.1, 8.1.2</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSd_tSRJ26JmEyQgEyMcwuN7Mc4twXU7SHhCrLHLAcpF27A5xw/viewform" target="_blank" rel="noopener"><b>Kuiz 8.2: Sukatan Serakan</b><span>SP 8.2.1–8.2.6</span></a></div><div class="row noprint" style="margin-top:28px"><a class="btn alt" href="bab07.html">‹ Bab 7</a><a class="btn alt" href="bab09.html">Bab 9 ›</a></div><footer>Disediakan oleh: JURULETIH · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu · Kemas kini: 13.11.2026</footer></div></body></html>
