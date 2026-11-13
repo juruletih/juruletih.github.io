@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bab 5: Kekongruenan, Pembesaran dan Gabungan Transformasi · Matematik T5</title><meta name="description" content="Nota, latihan dan kuiz Matematik Tingkatan 5">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F8FCFF;--card:#FFFFFF;--panel:#E9F4FD;--line:#DCEBF8;--ink:#1F2533;--muted:#5B6475;--navy:#3B5B8F;--sky:#8CC3EA;--peach:#F5B877;--sage:#9AA683;--warn:#FFF3E0}
+@media (prefers-color-scheme:dark){:root{--bg:#121722;--card:#1A2130;--panel:#1E2A3D;--line:#2A3850;--ink:#E8EDF5;--muted:#A3AEC2;--navy:#9DBBEA;--warn:#3A2E1A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Hanken Grotesk",-apple-system,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px 16px 56px}
+nav.crumb{font-size:14px;margin-bottom:12px}
+a{color:var(--navy)}
+h1{margin:4px 0 4px;font-size:clamp(26px,6vw,38px);line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+h2{margin:32px 0 10px;font-size:21px;color:var(--navy)}
+h3{margin:20px 0 6px;font-size:17px}
+.sub{color:var(--muted);margin:0 0 16px}
+.hero{background:var(--panel);border-radius:22px;padding:24px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+a.card{display:flex;flex-direction:column;gap:4px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;min-height:96px}
+a.card:hover{border-color:var(--navy)}
+a.card b{font-size:17px;line-height:1.3}
+a.card span{font-size:14px;color:var(--muted)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:var(--navy);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.btn.alt{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 12px;margin:10px 0}
+.note p{margin:8px 0}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--panel);color:var(--navy);margin-left:6px;white-space:nowrap}
+ol.lat{padding-left:22px}
+ol.lat li{margin:12px 0}
+details{margin-top:4px}
+summary{cursor:pointer;color:var(--navy);font-weight:600;min-height:32px;display:inline-block}
+.jaw{background:var(--panel);border-radius:10px;padding:8px 12px;margin-top:6px}
+.klist a.card{min-height:0}
+.warn{background:var(--warn);border-radius:12px;padding:10px 14px;font-size:15px}
+.mingguini{background:var(--card);border:2px solid var(--navy);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mingguini h2{margin-top:0}
+.soon{color:var(--muted);font-style:italic}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{
+ body{background:#fff;color:#000;font-size:12pt}
+ nav.crumb,.row,.noprint,footer a{display:none!important}
+ .jaw{display:block}
+ details{display:block}
+ details>summary{display:none}
+ details:not([open])>*:not(summary){display:block}
+ .note{border:1px solid #999}
+ a{color:#000;text-decoration:none}
+}
+</style></head><body><div class="wrap"><nav class="crumb"><a href="../../">Utama</a> › <a href="../">Tingkatan 5</a> › <a href="./">Matematik</a></nav><h1>Bab 5: Kekongruenan, Pembesaran dan Gabungan Transformasi</h1><p class="sub">Matematik Tingkatan 5 · Nota, latihan dan kuiz</p><div class="row noprint"><button class="btn alt" onclick="window.print()">Cetak / simpan PDF</button></div><h2>Selepas bab ini, anda boleh</h2><ul><li>mengenal pasti dan menentusahkan bentuk yang kongruen serta syarat kekongruenan segi tiga (SP 5.1.1–5.1.3)</li><li>memerihal pembesaran, menentukan imej, faktor skala dan hubungan luas imej dengan luas objek (SP 5.2.1–5.2.4)</li><li>memerihal gabungan transformasi dan transformasi tunggal yang setara (SP 5.3.1, 5.3.2)</li><li>memerihal teselasi dan mereka bentuk pola teselasi (SP 5.4.1–5.4.3)</li></ul><h2>Slaid</h2><p class="soon">Slaid bab ini belum disediakan. Gunakan nota di bawah dahulu.</p><h2>Nota</h2><div class="note"><h3>5.1 Kekongruenan</h3><p>Dua bentuk <b>kongruen</b> jika bentuk dan saiznya sama; sisi sepadan sama panjang dan sudut sepadan sama besar.</p><p><b>Syarat kekongruenan segi tiga:</b> SSS (tiga sisi), SAS (dua sisi dan sudut kandung), ASA (dua sudut dan sisi kandung), AAS (dua sudut dan satu sisi sepadan).</p><p><b>AAA</b> dan <b>SSA</b> bukan syarat kekongruenan: AAA hanya memberi bentuk serupa; SSA boleh menghasilkan dua segi tiga berbeza.</p></div><div class="note"><h3>5.2 Pembesaran</h3><p><b>Pembesaran</b> ditentukan oleh pusat pembesaran dan faktor skala k. Imej <b>serupa</b> dengan objek.</p><p>k = panjang sisi imej ÷ panjang sisi objek = PA′ ÷ PA (P = pusat).</p><p>k > 1: imej lebih besar; 0 < k < 1: imej lebih kecil; k negatif: imej di sebelah bertentangan pusat dan songsang.</p><p><b>Luas imej = k² × luas objek.</b></p><p>Koordinat imej bagi pusat C dan titik A: A′ = C + k(A − C).</p></div><div class="note"><h3>5.3 Gabungan Transformasi</h3><p><b>AB</b> bermaksud transformasi B dilakukan dahulu, kemudian A. Secara amnya AB ≠ BA.</p><p>Gabungan dua pantulan pada garis selari setara dengan satu translasi; dua pantulan pada garis berserenjang (bersilang) setara dengan satu putaran 180° pada titik persilangan.</p><p>Gabungan isometri mengekalkan luas; jika ada pembesaran faktor k, luas didarab k².</p></div><div class="note"><h3>5.4 Teselasi</h3><p><b>Teselasi</b>: pola bentuk berulang yang menutup satah tanpa ruang kosong dan tanpa bertindih.</p><p>Hasil tambah sudut di setiap bucu teselasi = <b>360°</b>.</p><p>Poligon sekata yang boleh menteselasi bersendirian: segi tiga sama sisi (60°), segi empat sama (90°), heksagon sekata (120°).</p><p>Teselasi dibina menggunakan translasi, pantulan dan putaran.</p></div><h2>Latihan</h2><p class="sub">Cuba dahulu di kertas. Tekan "Semak jawapan" selepas anda cuba.</p><ol class="lat"><li>Nyatakan empat syarat kekongruenan segi tiga.<span class="chip">5.1.2 / TP1</span><details><summary>Semak jawapan</summary><div class="jaw">SSS, SAS, ASA, AAS</div></details></li><li>ΔABC ≅ ΔDEF, ∠A = 50° dan ∠B = 70°. Cari ∠F.<span class="chip">5.1.3 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">60°</div></details></li><li>Sisi objek 4 cm dan sisi imej sepadan 10 cm. Cari faktor skala.<span class="chip">5.2.2 / TP2</span><details><summary>Semak jawapan</summary><div class="jaw">k = 2.5</div></details></li><li>Pusat pembesaran (0, 0), k = 3. Cari imej titik (2, −1).<span class="chip">5.2.2 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">(6, −3)</div></details></li><li>Luas objek 5 cm² dan k = 3. Cari luas imej.<span class="chip">5.2.3 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">45 cm²</div></details></li><li>Pusat (1, 1), k = −2. Cari imej titik (3, 2).<span class="chip">5.2.2 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">(−3, −1)</div></details></li><li>T ialah translasi 3 unit ke kanan dan 2 unit ke atas; M ialah pantulan pada paksi-y. Cari imej (2, 3) di bawah MT dan TM.<span class="chip">5.3.1 / TP4</span><details><summary>Semak jawapan</summary><div class="jaw">MT: (−5, 5); TM: (1, 5)</div></details></li><li>Hitung sudut pedalaman heksagon sekata dan terangkan mengapa heksagon sekata boleh menteselasi.<span class="chip">5.4.2 / TP3</span><details><summary>Semak jawapan</summary><div class="jaw">120°; 3 × 120° = 360°</div></details></li><li><b>(KBAT)</b> Gambar foto 10 cm × 15 cm dibesarkan sehingga luasnya 600 cm². Cari dimensi imej.<span class="chip">5.2.4 / TP5</span><details><summary>Semak jawapan</summary><div class="jaw">k = 2; 20 cm × 30 cm</div></details></li><li><b>(KBAT)</b> Tunjukkan bahawa pantulan pada paksi-y diikuti pantulan pada garis x = 3 setara dengan satu translasi.<span class="chip">5.3.2 / TP6</span><details><summary>Semak jawapan</summary><div class="jaw">x → −x → 6 + x; translasi 6 unit ke kanan</div></details></li></ol><h2>Kuiz</h2><div class="warn">Kuiz ini <b>direkod</b> untuk guru dan perlu log masuk dengan akaun DELIMa (e-mel murid). Jika tidak dapat log masuk, buat Latihan di atas dahulu dan maklumkan guru.</div><div class="grid klist" style="margin-top:12px"><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSd62ZNS18iV6hejSCEvILUe0JJ7WkBCPuI-KADyrizykI-HhQ/viewform" target="_blank" rel="noopener"><b>Kuiz 5.1: Kekongruenan</b><span>SP 5.1.1–5.1.3</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSeWrlfmSNodxVTo7gKdgjIUtxOP_SV9ENITYzB2sWr7ADliKw/viewform" target="_blank" rel="noopener"><b>Kuiz 5.2: Pembesaran</b><span>SP 5.2.1–5.2.4</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSdCVlpctS0LLXMZAanAVT1i16pDR5dk7Tc0JnBOy9BUI0vFsA/viewform" target="_blank" rel="noopener"><b>Kuiz 5.3: Gabungan Transformasi</b><span>SP 5.3.1, 5.3.2</span></a><a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLScoATwnyiBiSdzxgBF0iIGJiGq1lh9nzlSDNZCvhrBd4dj2ew/viewform" target="_blank" rel="noopener"><b>Kuiz 5.4: Teselasi</b><span>SP 5.4.1–5.4.3</span></a></div><div class="row noprint" style="margin-top:28px"><a class="btn alt" href="bab04.html">‹ Bab 4</a><a class="btn alt" href="bab06.html">Bab 6 ›</a></div><footer>Disediakan oleh: JURULETIH · Wan Mohd Aizuddin bin Che Mat (Cg Din), SMK Sultan Ismail, Kota Bharu · Kemas kini: 13.11.2026</footer></div></body></html>
