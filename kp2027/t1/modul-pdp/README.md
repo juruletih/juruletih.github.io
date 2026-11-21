@@ -31,4 +31,4 @@ Fail `.md` ialah sumber teks yang mudah disunting; fail `.html` ialah versi papa
 - Semua data dalam soalan ialah data hipotetikal tanpa nama murid.
 - **Bahan olahan Jurulatih Utama, bukan bahan rasmi BPK.** Fail Word dijana semula daripada fail `.md` yang telah dikemas kini.
 
-Disediakan oleh Cg Din dengan bantuan Claude, Oktober 2026.
+Disediakan oleh JURULETIH dengan bantuan Claude, Oktober 2026.
