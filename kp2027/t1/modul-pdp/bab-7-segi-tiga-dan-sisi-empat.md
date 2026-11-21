@@ -1,6 +1,6 @@
 # Modul PdP Matematik T1 - Bab 7 Segi Tiga dan Sisi Empat (KP2027)
 
-Tarikh: 19 Oktober 2026 · Penyedia: Cg Din (Wan Mohd Aizuddin), SMK Sultan Ismail · Dikemas kini: 21 November 2026
+Tarikh: 19 Oktober 2026 · Penyedia: Cg Din · Dikemas kini: 21 November 2026
 
 > **Status:** Bahan olahan Jurulatih Utama, bukan bahan rasmi BPK. Rujukan muktamad ialah Dokumen Kurikulum Matematik Tingkatan 1, Kurikulum Persekolahan 2027 (Bahagian Pembangunan Kurikulum, Terbitan 2026, ISBN 978-967-420-830-1).
 
