@@ -1,0 +1,116 @@
+<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEPAT · Bulatan · Menambah kuasa dua (bukan menolak) apabila jejari ialah hipotenus</title><style>
+:root{--ink:#17212B;--muted:#5B6475;--line:#C9D3DE;--kuning:#FFD75F}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#E9EDF2;font-family:Arial,Helvetica,sans-serif;color:var(--ink);font-size:10pt;line-height:1.3}
+.hal{width:210mm;height:297mm;margin:8mm auto;background:#fff;padding:7mm 8mm 6mm;display:flex;flex-direction:column;
+  overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.15);position:relative}
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.hal{margin:0;box-shadow:none;page-break-after:always;break-after:page}}
+/* kepala */
+.kepala{display:grid;grid-template-columns:1fr 50mm 30mm;gap:3mm;align-items:start}
+.logo .mat{display:inline-block;background:#E8F6FB;font-weight:700;font-size:6pt;padding:.4mm 2mm;border-radius:2mm;letter-spacing:.3px}
+.logo .huruf{font-weight:800;font-size:31pt;line-height:1;letter-spacing:5mm;margin:.5mm 0 1mm}
+.logo .pita{display:inline-block;background:var(--kuning);font-weight:700;font-size:8pt;padding:1mm 4mm;border-radius:1.5mm}
+.diri{background:#F2FAFD;border-radius:3mm;padding:2mm 3mm;font-size:9pt;line-height:2}
+.kanan{display:flex;flex-direction:column;gap:2mm}
+.topik{background:#FFF1C9;border-radius:3mm;padding:2mm;font-weight:700;font-size:8pt;text-align:center}
+.lencana{background:#FDE3EA;border-radius:2mm;padding:1.2mm 1.5mm;font-weight:700;font-size:5.6pt;text-align:center;line-height:1.25}
+.jalur{display:flex;gap:1mm;margin:2mm 0 2.5mm}
+.jalur span{flex:1;color:#fff;font-weight:700;font-size:9pt;padding:1.4mm 0 1.4mm 5mm;
+  clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,6% 50%)}
+.jalur span b{font-size:11pt;margin-right:2mm}
+.jalur span:first-child{clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%);padding-left:3mm}
+/* kaki */
+.kaki{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:2.5mm}
+.kaki div{border-radius:2mm;padding:2mm;font-weight:700;font-size:7.5pt;text-align:center;display:flex;align-items:center;justify-content:center;min-height:11mm}
+.kaki div:nth-child(1){background:#FFF1C9}.kaki div:nth-child(2){background:#E8F6FB;font-size:6.8pt}.kaki div:nth-child(3){background:#FDE3EA}
+.penyedia{font-size:6.5pt;color:var(--muted);text-align:right;margin-top:1mm}
+/* kad fasa */
+.isi{flex:1;display:grid;gap:2.5mm;min-height:0}
+.kad{border:1.2px solid var(--w);background:var(--p);border-radius:6mm;padding:3mm 4mm;position:relative;min-height:0;overflow:hidden}
+.kad h2{margin:0 0 2mm;font-size:14pt;display:flex;flex-wrap:wrap;align-items:center;gap:0 2mm;line-height:1}
+.kad h2 .no{width:8mm;height:8mm;border-radius:50%;background:var(--w);color:#fff;font-size:13pt;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.kad .sub{flex-basis:100%;font-weight:700;font-size:9.5pt;margin:.6mm 0 0 10mm}
+.kotak{background:#fff;border-radius:3mm;padding:2.5mm 3mm}
+.ungk{display:inline-block;border:1.2px solid var(--w);background:#fff;border-radius:2mm;padding:1.5mm 5mm;font-weight:700;font-size:13pt;margin:1.5mm 0}
+.pil{display:grid;grid-template-columns:1fr 1fr;gap:1mm 4mm;margin:1mm 0}
+.pil>span::before,.cb::before{content:'\2610';margin-right:1.5mm;font-size:11pt;vertical-align:-1px}
+.cb{display:block;margin:.6mm 0}
+.label{font-weight:700;margin:1.5mm 0 .5mm}
+.garis{border-bottom:1px solid var(--line);height:6mm}
+.yakin{display:flex;justify-content:space-between;max-width:62mm;margin-top:1mm}
+.yakin span{display:flex;flex-direction:column;align-items:center;font-size:8pt}
+.yakin span::before{content:'';width:4mm;height:4mm;border:1.2px solid var(--ink);border-radius:50%;margin-bottom:.5mm}
+.yakin-lbl{display:flex;justify-content:space-between;max-width:62mm;font-size:7pt;font-weight:700}
+table.j{border-collapse:collapse;width:100%;background:#fff;font-size:9pt}
+table.j th,table.j td{border:1px solid #9AA6B2;padding:1.2mm 2mm;text-align:center;height:7mm}
+table.j th{background:#F3F5F8}
+.kerja{display:inline-block;background:#FFF6D6;border-radius:2mm;padding:1.5mm 4mm;font-weight:700;font-size:12pt;margin:1mm 0}
+.dua{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.ayat{margin:1.2mm 0}
+.faham{background:#DFF2E6;border-radius:3mm;padding:2mm 3mm;margin-top:2mm}
+ol.s{margin:0;padding-left:5mm}ol.s li{margin:0 0 1mm}
+.rajah{text-align:center;margin:1mm 0}.rajah svg{max-width:100%;height:auto;max-height:70mm}
+.rajah .gr{stroke:#C9D3DE;stroke-width:1}.rajah .ax{stroke:#5B6475;stroke-width:1.6}
+.rajah .ob{fill:#fff;stroke:#17212B;stroke-width:2;stroke-linejoin:round}.rajah .ob.f1{fill:#EEF3F8}.rajah .ob.f3{fill:#DDE5EE}
+.rajah .im{fill:#FFE3CF;fill-opacity:.5;stroke:#17212B;stroke-width:2;stroke-dasharray:6 4}
+.rajah .sl{fill:none;stroke:#C0463A;stroke-width:2.4;stroke-dasharray:5 4}.rajah .lk{fill:none;stroke:#17212B;stroke-width:2;stroke-dasharray:7 5}
+.rajah .lp{fill:none;stroke:#17212B;stroke-width:2}.rajah .dt{fill:#17212B}.rajah .tx{fill:#17212B;font-size:13px;font-family:inherit}.rajah .tb{font-weight:700}.rajah .kc{font-size:11px;fill:#5B6475}
+.pilg{display:grid;grid-template-columns:repeat(auto-fit,minmax(28mm,1fr));gap:2mm;margin:1.5mm 0}
+.pilg>div{background:#fff;border:1px solid #9AA6B2;border-radius:2mm;padding:1.5mm;text-align:center;font-weight:700}
+.pilg .rajah svg{max-height:30mm}
+.pec{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.05;font-size:.9em;margin:0 .15em}
+.pec>span:first-child{border-bottom:1px solid currentColor;padding:0 .2em}
+.vek{white-space:nowrap;font-size:1.15em}.vek .vk{font-size:.75em}.vek .vk>span:first-child{border-bottom:0}
+.ringkas .rajah svg{max-height:34mm}
+.sub-item{margin-bottom:2.5mm}.sub-item:last-child{margin-bottom:0}
+.limpah{outline:3px solid #D00 !important}
+.limpah::after{content:'LIMPAH ' attr(data-k);position:absolute;right:3mm;bottom:2mm;background:#D00;color:#fff;font:700 9pt Arial;padding:.5mm 2mm;border-radius:1mm}
+/* mod ringkas */
+.ringkas .isi{grid-template-columns:52fr 48fr}
+.ringkas .kad-T{grid-column:1/3}
+.ringkas{font-size:8.6pt;line-height:1.25}.ringkas .pil{gap:.5mm 4mm}.ringkas .ungk{font-size:12pt;margin:1mm 0;padding:1mm 4mm}.ringkas .isi{grid-template-rows:auto auto minmax(0,1fr)}
+.ringkas .kotak{padding:1.8mm 2.5mm}.ringkas .kad{padding:2.5mm 3.5mm}.ringkas .faham{margin-top:1.5mm;padding:1.5mm 2.5mm}.ringkas .yakin-baris{margin-top:1mm}.ringkas .garis{height:5mm}.ringkas .kad h2{margin-bottom:1.5mm}.ringkas .kad .sub{flex-basis:auto;margin:0 0 0 1mm;font-size:8.5pt;color:#444}
+.ringkas table.j th,.ringkas table.j td{height:5.6mm;padding:.8mm 1.5mm;font-size:8.5pt}
+.ringkas .kad-E .cb{display:inline-block;margin:.4mm 3mm .4mm 0}.ringkas .kad-T2 .label{margin:.8mm 0 .3mm}
+.yakin-baris{margin-top:1.5mm;font-size:8.5pt}.yakin-baris span{margin-left:2.5mm}
+.yakin-baris span::before{content:'\2610';margin-right:.8mm;font-size:10pt}
+.ringkas .kad-T .dalam{display:grid;grid-template-columns:55fr 45fr;gap:4mm}
+/* mod penuh */
+.penuh .isi{grid-template-rows:1fr}
+.penuh .kad{padding:5mm 6mm}.penuh .kad h2{font-size:18pt}.penuh .garis{height:8mm}
+/* halaman guru */
+.guru .hal{padding:9mm 9mm 7mm}
+.guru h1{color:#7654D9;text-align:center;font-size:18pt;margin:0}
+.guru .gsub{text-align:center;color:#444;font-size:10pt;margin:.5mm 0}
+.guru .gfokus{text-align:center;color:var(--muted);font-size:9pt;margin-bottom:3mm}
+.guru h3{color:#7654D9;font-size:11pt;margin:3.5mm 0 1.5mm}
+table.g{border-collapse:collapse;width:100%;font-size:7.8pt}
+table.g th{background:var(--h,#7654D9);color:#fff;padding:1.5mm;border:1px solid #fff}
+table.g td{border:1px solid #D5DCE4;padding:1.3mm 1.5mm;vertical-align:top}
+table.g tr:nth-child(even) td{background:#F7F9FB}
+.gkaki{margin-top:auto;font-size:6.5pt;color:var(--muted);display:flex;justify-content:space-between}
+.tl{margin:3mm 0;font-size:9pt}.tl span{display:inline-block;border-bottom:1px solid #999;width:150mm}
+.cetak{position:fixed;top:4mm;right:4mm;background:#7654D9;color:#fff;border:0;border-radius:2mm;padding:2mm 4mm;font-weight:700;cursor:pointer}
+@media print{.cetak{display:none}}
+</style></head><body class="murid"><button class="cetak" onclick="print()">Cetak / PDF</button><div class="hal penuh"><div class="kepala">
+ <div class="logo"><span class="mat">MATEMATIK</span><div class="huruf"><span style="color:#E95A78">T</span><span style="color:#E18A16">E</span><span style="color:#35A968">P</span><span style="color:#159BD7">A</span><span style="color:#7654D9">T</span></div><span class="pita">Dari Salah Faham kepada Kefahaman</span></div>
+ <div class="diri">Nama : ..............................<br>Kelas : ..............................<br>Tarikh : ............................</div>
+ <div class="kanan"><div class="topik">TOPIK : Bulatan<br>Tingkatan 2</div><div class="lencana">Tiada jawapan salah pada peringkat ini.<br>Kami ingin tahu cara anda berfikir.</div></div>
+</div><div class="jalur"><span style="background:#E95A78"><b>T</b>Teliti</span><span style="background:#E18A16"><b>E</b>Eksplorasi</span><span style="background:#35A968"><b>P</b>Pulih</span><span style="background:#159BD7"><b>A</b>Aplikasi</span><span style="background:#7654D9"><b>T</b>Teguh</span></div><div class="isi"><section class="kad kad-T " style="--w:#E95A78;--p:#FDECF0"><h2><span class="no">1</span>T - TELITI<span class="sub">Apa yang anda fikir?</span></h2><div class="kotak"><div class="sub-item"><div class="label" style="margin-top:0">Rajah menunjukkan bulatan berpusat O dan berjejari 10 cm. Perentas AB = 16 cm dan OM berserenjang dengan AB. Cari jarak OM, iaitu <i>d</i>.</div><div class="rajah"><svg viewBox="0 0 240 228" role="img" aria-label="Bulatan dengan perentas dan garis dari pusat yang berserenjang dengan perentas" style="max-width:300px"><circle class="lp" cx="120" cy="100" r="80"/><line class="lp" x1="56" y1="148" x2="184" y2="148"/><line class="lk" x1="120" y1="100" x2="120" y2="148"/><line class="lp" x1="120" y1="100" x2="184" y2="148"/><circle class="dt" cx="120" cy="100" r="3.5"/><polygon class="lp" points="120,148 129,148 129,139 120,139"/><text class="tx tb" x="112" y="94" text-anchor="end">O</text><text class="tx tb" x="50" y="152" text-anchor="end">A</text><text class="tx tb" x="190" y="152" text-anchor="start">B</text><text class="tx tb" x="120" y="164" text-anchor="middle">M</text><text class="tx tb" x="114" y="128" text-anchor="end">d</text><text class="tx tb" x="158" y="112" text-anchor="start">10 cm</text><text class="kc" x="120" y="222" text-anchor="middle">Rajah tidak dilukis mengikut skala</text><text class="tx tb" x="120" y="200" text-anchor="middle">AB = 16 cm</text></svg></div><div class="pil"><span>A. 12.81 cm</span><span>B. 6 cm</span><span>C. 2 cm</span><span>D. Tidak pasti</span></div></div></div><div class="kotak" style="margin-top:4mm"><div class="label" style="margin-top:0">Mengapa anda memilih jawapan itu?</div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="label">Sejauh mana anda yakin?</div><div class="yakin"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div><div class="yakin-lbl"><span>Tidak yakin</span><span>Sangat yakin</span></div></div></section></div><div class="kaki"><div>“Fikir dengan matematik,<br>melangkah lebih jauh!”</div><div>Idea yang lebih tepat<br>membawa penyelesaian yang lebih baik.</div><div>Teruskan meneroka!</div></div><div class="penyedia">Disediakan oleh: JURULETIH</div></div><div class="hal penuh"><div class="kepala">
+ <div class="logo"><span class="mat">MATEMATIK</span><div class="huruf"><span style="color:#E95A78">T</span><span style="color:#E18A16">E</span><span style="color:#35A968">P</span><span style="color:#159BD7">A</span><span style="color:#7654D9">T</span></div><span class="pita">Dari Salah Faham kepada Kefahaman</span></div>
+ <div class="diri">Nama : ..............................<br>Kelas : ..............................<br>Tarikh : ............................</div>
+ <div class="kanan"><div class="topik">TOPIK : Bulatan<br>Tingkatan 2</div><div class="lencana">Tiada jawapan salah pada peringkat ini.<br>Kami ingin tahu cara anda berfikir.</div></div>
+</div><div class="jalur"><span style="background:#E95A78"><b>T</b>Teliti</span><span style="background:#E18A16"><b>E</b>Eksplorasi</span><span style="background:#35A968"><b>P</b>Pulih</span><span style="background:#159BD7"><b>A</b>Aplikasi</span><span style="background:#7654D9"><b>T</b>Teguh</span></div><div class="isi"><section class="kad kad-E " style="--w:#E18A16;--p:#FFF4E3"><h2><span class="no">2</span>E - EKSPLORASI<span class="sub">Mari uji cara fikir kita.</span></h2><div class="kotak"><div style="margin-bottom:2mm">Dalam rajah, OM berserenjang dengan AB. Bagi setiap bulatan, lengkapkan jadual.</div><div class="rajah"><svg viewBox="0 0 240 228" role="img" aria-label="Bulatan berpusat O dengan perentas AB dan OM berserenjang dengan AB" style="max-width:300px"><circle class="lp" cx="120" cy="100" r="80"/><line class="lp" x1="56" y1="148" x2="184" y2="148"/><line class="lk" x1="120" y1="100" x2="120" y2="148"/><line class="lp" x1="120" y1="100" x2="184" y2="148"/><circle class="dt" cx="120" cy="100" r="3.5"/><polygon class="lp" points="120,148 129,148 129,139 120,139"/><text class="tx tb" x="112" y="94" text-anchor="end">O</text><text class="tx tb" x="50" y="152" text-anchor="end">A</text><text class="tx tb" x="190" y="152" text-anchor="start">B</text><text class="tx tb" x="120" y="164" text-anchor="middle">M</text><text class="tx tb" x="114" y="128" text-anchor="end">d</text><text class="tx tb" x="158" y="112" text-anchor="start">j</text><text class="kc" x="120" y="222" text-anchor="middle">Rajah tidak dilukis mengikut skala</text></svg></div><table class="j"><tr><th>Jejari OB (cm)</th><th>MB = ½ AB (cm)</th><th>OB² − MB²</th><th>OM (cm)</th><th>OM < OB?</th></tr><tr><td>10</td><td>8</td><td></td><td></td><td></td></tr><tr><td>13</td><td>12</td><td></td><td></td><td></td></tr><tr><td>5</td><td>3</td><td></td><td></td><td></td></tr></table></div><div class="kotak" style="margin-top:4mm"><div class="label" style="margin-top:0">Apa yang anda perhatikan?</div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="label">Dalam segi tiga OMB, sisi manakah yang sentiasa paling panjang?</div><span class="cb">OM</span><span class="cb">MB</span><span class="cb">OB (jejari)</span><span class="cb">Tidak pasti</span></div></section></div><div class="kaki"><div>“Fikir dengan matematik,<br>melangkah lebih jauh!”</div><div>Idea yang lebih tepat<br>membawa penyelesaian yang lebih baik.</div><div>Teruskan meneroka!</div></div><div class="penyedia">Disediakan oleh: JURULETIH</div></div><div class="hal penuh"><div class="kepala">
+ <div class="logo"><span class="mat">MATEMATIK</span><div class="huruf"><span style="color:#E95A78">T</span><span style="color:#E18A16">E</span><span style="color:#35A968">P</span><span style="color:#159BD7">A</span><span style="color:#7654D9">T</span></div><span class="pita">Dari Salah Faham kepada Kefahaman</span></div>
+ <div class="diri">Nama : ..............................<br>Kelas : ..............................<br>Tarikh : ............................</div>
+ <div class="kanan"><div class="topik">TOPIK : Bulatan<br>Tingkatan 2</div><div class="lencana">Tiada jawapan salah pada peringkat ini.<br>Kami ingin tahu cara anda berfikir.</div></div>
+</div><div class="jalur"><span style="background:#E95A78"><b>T</b>Teliti</span><span style="background:#E18A16"><b>E</b>Eksplorasi</span><span style="background:#35A968"><b>P</b>Pulih</span><span style="background:#159BD7"><b>A</b>Aplikasi</span><span style="background:#7654D9"><b>T</b>Teguh</span></div><div class="isi"><section class="kad kad-P " style="--w:#35A968;--p:#EAF7EF"><h2><span class="no">3</span>P - PULIH<span class="sub">Bina semula kefahaman.</span></h2><div style="margin-bottom:1.5mm">Berdasarkan penerokaan anda, lengkapkan ayat berikut.</div><div class="kotak"><div class="ayat">OM berserenjang dengan AB, maka M ialah <span style="display:inline-block;border-bottom:1px solid #777;width:24mm;max-width:100%"></span> AB.</div><div class="ayat">Dalam segi tiga OMB, hipotenus ialah <span style="display:inline-block;border-bottom:1px solid #777;width:24mm;max-width:100%"></span>.</div><div class="ayat">Maka OM² = <span style="display:inline-block;border-bottom:1px solid #777;width:24mm;max-width:100%"></span> − <span style="display:inline-block;border-bottom:1px solid #777;width:24mm;max-width:100%"></span>.</div></div><div class="faham"><b>Dalam satu ayat:</b><br>Sekarang saya faham bahawa …<div class="garis"></div><div class="garis"></div><div class="garis"></div></div></section></div><div class="kaki"><div>“Fikir dengan matematik,<br>melangkah lebih jauh!”</div><div>Idea yang lebih tepat<br>membawa penyelesaian yang lebih baik.</div><div>Teruskan meneroka!</div></div><div class="penyedia">Disediakan oleh: JURULETIH</div></div><div class="hal penuh"><div class="kepala">
+ <div class="logo"><span class="mat">MATEMATIK</span><div class="huruf"><span style="color:#E95A78">T</span><span style="color:#E18A16">E</span><span style="color:#35A968">P</span><span style="color:#159BD7">A</span><span style="color:#7654D9">T</span></div><span class="pita">Dari Salah Faham kepada Kefahaman</span></div>
+ <div class="diri">Nama : ..............................<br>Kelas : ..............................<br>Tarikh : ............................</div>
+ <div class="kanan"><div class="topik">TOPIK : Bulatan<br>Tingkatan 2</div><div class="lencana">Tiada jawapan salah pada peringkat ini.<br>Kami ingin tahu cara anda berfikir.</div></div>
+</div><div class="jalur"><span style="background:#E95A78"><b>T</b>Teliti</span><span style="background:#E18A16"><b>E</b>Eksplorasi</span><span style="background:#35A968"><b>P</b>Pulih</span><span style="background:#159BD7"><b>A</b>Aplikasi</span><span style="background:#7654D9"><b>T</b>Teguh</span></div><div class="isi"><section class="kad kad-A " style="--w:#159BD7;--p:#E6F4FB"><h2><span class="no">4</span>A - APLIKASI<span class="sub">Gunakan kefahaman baharu anda.</span></h2><div class="dua"><div class="kotak"><div class="label" style="margin-top:0">A. Selesaikan soalan berikut.</div><ol class="s"><li>Jejari sebuah bulatan ialah 13 cm dan panjang perentasnya 24 cm. Cari jarak perentas itu dari pusat.<div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div></li><li>Jejari sebuah bulatan ialah 5 cm. Sebuah perentas berjarak 3 cm dari pusat. Cari panjang perentas itu.<div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div></li></ol></div><div class="kotak"><div class="label" style="margin-top:0">B. Cari kesilapan.</div>Seorang murid menulis:<div class="kerja">Jejari 17 cm, perentas 30 cm: <i>d</i>² = 17² + 15² = 514, <i>d</i> = 22.67 cm</div><div class="label">Adakah jawapan ini betul?</div><span class="cb" style="display:inline">Ya</span>&nbsp;&nbsp;&nbsp;<span class="cb" style="display:inline">Tidak</span><div class="label">Jelaskan kesilapannya.</div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div><div class="garis"></div></div></div></section></div><div class="kaki"><div>“Fikir dengan matematik,<br>melangkah lebih jauh!”</div><div>Idea yang lebih tepat<br>membawa penyelesaian yang lebih baik.</div><div>Teruskan meneroka!</div></div><div class="penyedia">Disediakan oleh: JURULETIH</div></div><div class="hal penuh"><div class="kepala">
+ <div class="logo"><span class="mat">MATEMATIK</span><div class="huruf"><span style="color:#E95A78">T</span><span style="color:#E18A16">E</span><span style="color:#35A968">P</span><span style="color:#159BD7">A</span><span style="color:#7654D9">T</span></div><span class="pita">Dari Salah Faham kepada Kefahaman</span></div>
+ <div class="diri">Nama : ..............................<br>Kelas : ..............................<br>Tarikh : ............................</div>
+ <div class="kanan"><div class="topik">TOPIK : Bulatan<br>Tingkatan 2</div><div class="lencana">Tiada jawapan salah pada peringkat ini.<br>Kami ingin tahu cara anda berfikir.</div></div>
+</div><div class="jalur"><span style="background:#E95A78"><b>T</b>Teliti</span><span style="background:#E18A16"><b>E</b>Eksplorasi</span><span style="background:#35A968"><b>P</b>Pulih</span><span style="background:#159BD7"><b>A</b>Aplikasi</span><span style="background:#7654D9"><b>T</b>Teguh</span></div><div class="isi"><section class="kad kad-T2 " style="--w:#7654D9;--p:#F0ECFC"><h2><span class="no">5</span>T - TEGUH<span class="sub">Adakah anda sudah yakin?</span></h2><div class="kotak"><div class="label" style="margin-top:0">A. Kembali kepada soalan awal: Rajah menunjukkan bulatan berpusat O dan berjejari 10 cm. Perentas AB = 16 cm dan OM berserenjang dengan AB. Cari jarak OM, iaitu <i>d</i>.</div>Apakah jawapan anda sekarang? ________<br>Adakah jawapan anda berubah? <span class="cb" style="display:inline">Ya</span> <span class="cb" style="display:inline">Tidak</span><div class="label">Mengapa?</div><div class="garis"></div><div class="garis"></div></div><div class="kotak" style="margin-top:2mm"><b>B. Cabar diri!</b> Adakah setiap pernyataan benar atau tidak? Berikan sebab.<table class="j" style="margin-top:1mm"><tr><th>Pernyataan</th><th style="width:18%">Benar / Tidak</th><th style="width:30%">Sebab</th></tr><tr><td style="text-align:left">1. Garis dari pusat yang berserenjang dengan perentas membahagi dua sama perentas itu</td><td></td><td></td></tr><tr><td style="text-align:left">2. Jarak perentas dari pusat boleh lebih panjang daripada jejari</td><td></td><td></td></tr><tr><td style="text-align:left">3. Jika jejari 10 cm dan separuh perentas 6 cm, jarak dari pusat ialah 8 cm</td><td></td><td></td></tr></table></div><div class="kotak" style="margin-top:2mm"><b>Refleksi:</b> Satu perkara yang saya kini faham dengan lebih baik ialah:<div class="garis"></div><div class="garis"></div><div class="label">Tahap keyakinan sekarang:</div><div class="yakin"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div><div class="yakin-lbl"><span>Tidak yakin</span><span>Sangat yakin</span></div></div></section></div><div class="kaki"><div>“Fikir dengan matematik,<br>melangkah lebih jauh!”</div><div>Idea yang lebih tepat<br>membawa penyelesaian yang lebih baik.</div><div>Teruskan meneroka!</div></div><div class="penyedia">Disediakan oleh: JURULETIH</div></div><script>document.querySelectorAll('.hal,.kad').forEach(function(el){if(el.scrollHeight>el.clientHeight+1){el.classList.add('limpah');el.dataset.k=(el.className.match(/kad-(\w+)/)||['','HALAMAN'])[1];}});</script></body></html>
